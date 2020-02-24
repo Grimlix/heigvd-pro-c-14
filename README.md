@@ -10,7 +10,7 @@ Development team:
 
 | Name                                 | Email                        | Github   |
 |--------------------------------------|------------------------------|----------|
-| James Gosling                        | nicolas.hungerbuhler@heig-vd.ch     | Grimlix  |
+| Nicolas Hungerbühler                        | nicolas.hungerbuhler@heig-vd.ch     | Grimlix  |
 | Brian Kernighan (project lead)       | brian.kernighan@heig-vd.ch   | perwol   |
 | Guido van Rossum                     | guido.vanrossum@heig-vd.ch   | chaunlep |
 | Bjarne Stroustrup                    | bjarne.stroustrup@heig-vd.ch | tomphan  |
