@@ -12,7 +12,7 @@ Development team:
 |--------------------------------------|------------------------------|----------|
 | Nicolas Hungerbühler                 | nicolas.hungerbuhler@heig-vd.ch     | Grimlix  |
 | Brian Kernighan (project lead)       | brian.kernighan@heig-vd.ch   | perwol   |
-| Lucas Gianinetti                     | lucas.gianinetti@heig-vd.ch   | chaunlep |
+| Lucas Gianinetti                     | lucas.gianinetti@heig-vd.ch   | LucasGianinetti |
 | Bjarne Stroustrup                    | bjarne.stroustrup@heig-vd.ch | tomphan  |
 | Linus Torvalds (deputy project lead) | linus.torvalds@heig-vd.ch    | kwenaw   |
 
