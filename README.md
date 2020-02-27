@@ -11,10 +11,11 @@ Development team:
 | Name                                 | Email                        | Github   |
 |--------------------------------------|------------------------------|----------|
 | Nicolas Hungerbühler                 | nicolas.hungerbuhler@heig-vd.ch     | Grimlix  |
-| Brian Kernighan (project lead)       | brian.kernighan@heig-vd.ch   | perwol   |
+| Jérémy Corbaz (project lead)       | jeremy.corbaz@heig-vd.ch   | emerzit   |
 | Lucas Gianinetti                     | lucas.gianinetti@heig-vd.ch   | LucasGianinetti |
 | Ludovic Bonzon       | ludovic.bonzon@heig-vd.ch | bonzonlu |
 | Linus Torvalds (deputy project lead) | linus.torvalds@heig-vd.ch    | kwenaw   |
+|
 
 ## Dependencies
 
