@@ -1,0 +1,30 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+app_demo_getTemplate:
+    path: /demo/getTemplate
+    controller: App\Controller\Demo_controller::get_template
+app_demo_getHttpResponse:
+    path: /demo/getHttpResponse
+    controller: App\Controller\Demo_controller::get_http_response
+app_demo_getRandomNumber:
+    path: /demo/getRandomNumber
+    controller: App\Controller\Demo_controller::get_random_number
+    
+
+app_admin_index:
+    path: /admin
+    controller: App\Controller\Admin_controller::index
+
+app_admin_createPoll:
+    path: /admin/createPoll
+    controller: App\Controller\Admin_controller::create_poll
+
+
+    
+app_user_getCurrentPoll:
+    path: /user/getCurrentPoll
+    controller: App\Controller\User_controller::get_current_poll
+
+
