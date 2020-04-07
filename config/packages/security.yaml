@@ -1,0 +1,36 @@
+security:
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    encoders:
+        App\Entity\User:
+            algorithm: auto
+
+    
+    providers:
+        # used to reload user from session & other features (e.g. switch_user)
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
+    
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        
+        main:
+            anonymous: lazy
+            guard:
+                authenticators:
+                    - App\Security\AdminAuthAuthenticator
+            logout:
+                path: app_logout
+                # where to redirect after logout
+                # target: app_any_route
+            
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+        - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        #- { path: ^/admin, roles: ROLE_ADMIN }
+        #- { path: ^/profile, roles: ROLE_USER }
