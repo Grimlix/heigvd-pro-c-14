@@ -28,3 +28,5 @@ app_user_getCurrentPoll:
     controller: App\Controller\User_controller::get_current_poll
 
 
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
