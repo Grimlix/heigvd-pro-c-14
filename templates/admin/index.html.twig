@@ -1,1 +1,7 @@
 <a href="{{ path('app_admin_createPoll') }}">create poll</a>
+<a href="{{ path('app_login') }}">login</a>
+{% if app.user %}
+    <div class="mb-3">
+        <img src="{{ app.user.profilePicture.picturePath }}{{ app.user.profilePicture.pictureName }}">
+    </div>
+{% endif %}

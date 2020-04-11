@@ -28,3 +28,14 @@ app_user_getCurrentPoll:
     controller: App\Controller\User_controller::get_current_poll
 
 
+app_login:
+    path: /login
+    controller: App\Controller\AdminAuthController::login
+
+app_adminAuth_logout:
+    path: /logout
+    controller: App\Controller\AdminAuthController::logout
+
+app_registration_register:
+    path: /registration
+    controller: App\Controller\RegistrationController::register
