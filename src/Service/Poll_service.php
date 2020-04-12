@@ -11,8 +11,7 @@ class Poll_service
 {
     private $entity_manager;
 
-    public function __construct(EntityManagerInterface $entity_manager)
-    {
+    public function __construct(EntityManagerInterface $entity_manager){
         $this->entity_manager = $entity_manager;
     }
 
@@ -22,19 +21,36 @@ class Poll_service
         $poll->setName('test');
 
         $this->entity_manager->persist($poll);
-
         $this->entity_manager->flush();
 
         return new Response('Saved new product with id '.$poll->getId());
     }
 
-    public function get_all_polls()
-    {
-        $repository = $this->entity_manager->getRepository(Poll::class);
-        return $repository->findAll();
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
+    public function delete_poll($id): Response {
+
+        $product = $this->getDoctrine()
+            ->getRepository(Poll::class)
+            ->find($id);
+
+        $this->entity_manager->remove($product->getId());
+        $this->entity_manager->flush();
+
+        return new Response('Deleted product with id ' .$this->getId());
     }
-
-
-
+    */
 
 }

@@ -1,0 +1,29 @@
+easy_admin:
+
+    design:
+        menu:
+            - label: 'Utilities'
+              icone: 'newspaper-o'
+              children:
+                  - {entity: 'Poll'}
+                  - {entity: 'Question'}
+
+            - label: 'Option'
+              icone: 'newspaper-o'
+              children:
+                - {entity: 'Tag'}
+
+            - label: 'User'
+              icone: 'newspaper-o'
+
+    entities:
+        Poll:
+            class: App\Entity\Poll
+        Question:
+            class: App\Entity\Question
+        Tag:
+            class: App\Entity\Tag
+            form:
+              fields:
+              - {property: 'name'}
+
