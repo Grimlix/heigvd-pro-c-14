@@ -14,19 +14,12 @@ app_demo_getRandomNumber:
     
 
 app_admin_index:
-    path: /admin
+    path: /home
     controller: App\Controller\Admin_controller::index
 
 app_admin_createPoll:
-    path: /admin/createPoll
+    path: /home/createPoll
     controller: App\Controller\Admin_controller::create_poll
-
-
-    
-app_user_getCurrentPoll:
-    path: /user/getCurrentPoll
-    controller: App\Controller\User_controller::get_current_poll
-
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
