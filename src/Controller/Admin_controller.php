@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Service\Poll_service;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Routing\Annotation\Route;
 
 class Admin_controller extends AbstractController
 {
@@ -18,6 +19,16 @@ class Admin_controller extends AbstractController
 
     public function index(){
         return $this->render('admin/index.html.twig');
+    }
+
+    // fonction page home ici pour l'instant
+
+    /**
+     * @Route("/", name="home")
+     */
+    public function home()
+    {
+        return $this->render('home/home.html.twig');
     }
 
     public function create_poll()

@@ -1,0 +1,60 @@
+{%  extends 'base.html.twig' %}
+
+{%  block body %}
+    <!-- Commentaire
+    <h1>Bienvenue </h1>
+
+    <p>Veuillez entrer les identitfiants nécessaire pour participier au poll</p>
+
+    <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Nom et prénom">
+    </form>
+
+    <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Code pour la session">
+    </form>
+
+    <button type="button" class="btn btn-primary">Envoyer</button>
+
+    <p>Si vous souhaitez créer un poll</p>
+
+    <a href="/admin" class="btn btn-primary" role="button">Création de poll</a>
+    -->
+
+
+    <div class="jumbotron">
+        <form>
+            <fieldset>
+                <legend>Bienvenue</legend>
+                <p>Veuillez entrer les identitfiants nécessaires pour participier au poll</p>
+                <div class="form-group">
+                    <label for="identifiant">Nom et prénom</label>
+                    <input type="text" class="form-control" id="exempleIdentifiant1" placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Mot de passe</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
+                <fieldset>
+                    <legend>Choisissez votre rôle</legend>
+                    <div class="form-group">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" checked="">
+                            <label class="custom-control-label" for="customRadio1">Participant au questionnaire</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                            <label class="custom-control-label" for="customRadio2">Créateur de questionnaire</label>
+                        </div>
+                    </div>
+                </fieldset>
+                <button type="submit" class="btn btn-primary">Envoyer</button>
+            </fieldset>
+        </form>
+
+    </div>
+
+
+
+
+{% endblock %}

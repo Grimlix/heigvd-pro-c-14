@@ -3,10 +3,53 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="https://bootswatch.com/4/united/bootstrap.min.css">
         {% block stylesheets %}{% endblock %}
     </head>
+    <!-- <img src="imagePoll alt="img1"> -->
+
     <body>
-        {% block body %}{% endblock %}
+       <div style="background-image: url('https://www.saurabhkarwal.com/wp-content/uploads/2018/03/Background-opera-speeddials-community-web-simple-backgrounds.jpg');">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <!-- <img src="Sans%20titre.png" alt="imagePoll">-->
+            <a class="navbar-brand" href="/">PointRéponse</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin">Connexion<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">A propos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Paramètres</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Se déconnecter</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            {% block body %}{% endblock %}
+        </div>
         {% block javascripts %}{% endblock %}
+           <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+           <footer>
+               <p>Team C14 © {{ 'now'|date('Y') }}</p>
+           </footer>
+
+       </div>
+
     </body>
+
+
 </html>
+
+
+
