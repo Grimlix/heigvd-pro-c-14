@@ -68,7 +68,6 @@ class Poll
         return $this;
     }
 
-
     /**
      * @return Collection|Question[]
      */
@@ -95,13 +94,11 @@ class Poll
         return $this;
     }
 
-    public function getUser(): ?User
-    {
+    public function getUser(): ?User{
         return $this->user;
     }
 
-    public function setUser(?User $user): self
-    {
+    public function setUser(?User $user): self{
         $this->user = $user;
         return $this;
     }

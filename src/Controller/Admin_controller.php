@@ -3,6 +3,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Service\Poll_service;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\EasyAdminController;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -29,6 +30,9 @@ class Admin_controller extends EasyAdminController
         if($entityClass == Poll::class){
             $user = $this->security->getUser();
             $response->andWhere('entity.user = :userId')->setParameter('userId', $user);
+        }else if($entityClass == User::class){
+            $user = $this->security->getUser();
+            $response->andWhere('entity.id = :userId')->setParameter('userId', $user);
         }
         return $response;
     }
@@ -39,6 +43,9 @@ class Admin_controller extends EasyAdminController
         if($entityClass == Poll::class){
             $user = $this->security->getUser();
             $response->andWhere('entity.user = :userId')->setParameter('userId', $user);
+        }else if($entityClass == User::class){
+            $user = $this->security->getUser();
+            $response->andWhere('entity.id = :userId')->setParameter('userId', $user);
         }
         return $response;
     }
@@ -56,16 +63,5 @@ class Admin_controller extends EasyAdminController
         return $this->render('admin/index.html.twig');
     }
 
-    public function create_poll(){
-        return $this->poll_service->create_poll();
-    }
-
-
-    /*
-    public function delete_poll($id){
-        $this->poll_service->delete_poll($id);
-        return $this->render('admin/index.html.twig');
-    }
-    */
 
 }

@@ -4,28 +4,26 @@
 namespace App\Form;
 
 
-use App\Entity\Question;
+use App\Entity\Answer;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class questionType extends AbstractType
+class AnswerEmbeddedForm extends AbstractType
 {
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('text');
-
-        $builder->add('answers', CollectionType::class, [
-            'allow_add' => true,
-        ]);
+        $builder
+            ->add('answerText');
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Question::class,
+            'data_class' => Answer::class,
         ]);
     }
+
 
 }

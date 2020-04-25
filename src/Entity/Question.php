@@ -5,11 +5,12 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Form\AbstractType;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\QuestionRepository")
  */
-class Question
+class Question extends AbstractType
 {
     /**
      * @ORM\Id()
@@ -35,7 +36,7 @@ class Question
     private $tags;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Answer", mappedBy="question")
+     * @ORM\OneToMany(targetEntity="App\Entity\Answer", mappedBy="question", cascade={"remove", "persist"}, orphanRemoval=true)
      */
     private $answers;
 
