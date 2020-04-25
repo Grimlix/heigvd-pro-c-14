@@ -46,12 +46,8 @@ class Admin_controller extends EasyAdminController
     // Creates a new instance of the entity being created. This instance is passed
     // to the form created with the 'createNewForm()' method. Override this method
     // if your entity has a constructor that expects some arguments to be passed
-    protected function createNewEntity(){
-        //dump($this->entity);
-        $entity = new $this->entity['class']($this->getUser());
-        return $entity;
-
-
+    protected function createNewPollEntity(){
+        return new Poll($this->getUser());
     }
 
 
