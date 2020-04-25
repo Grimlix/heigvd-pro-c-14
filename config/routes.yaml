@@ -11,7 +11,6 @@ app_demo_getHttpResponse:
 app_demo_getRandomNumber:
     path: /demo/getRandomNumber
     controller: App\Controller\Demo_controller::get_random_number
-    
 
 app_admin_index:
     path: /home

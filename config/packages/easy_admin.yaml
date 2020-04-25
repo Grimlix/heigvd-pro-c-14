@@ -7,36 +7,24 @@ easy_admin:
                   - {entity: 'Poll'}
                   - {entity: 'Question'}
                   - {entity: 'Answer'}
-                  - {entity: 'User'}
 
             - label: 'Option'
               icone: 'newspaper-o'
               children:
                 - {entity: 'Tag'}
 
-    list:
-      actions:
-        - {name: 'restock', icon: 'plus-square'}
-
     entities:
         Poll:
             class: App\Entity\Poll
+            form:
+              fields:
+                - 'name'
+                - 'passToken'
+                - 'questions'
         Question:
             class: App\Entity\Question
         Answer:
             class: App\Entity\Answer
-        User:
-            class: App\Entity\User
-            controller: App\Controller\User_controller
-            form:
-              fields:
-                - username
-                - email
-                - enabled
-                - lastLogin
-                # if administrators are allowed to edit users' passwords and roles, add this:
-                - { property: 'plainPassword', type: 'text', type_options: { required: false } }
-                - { property: 'roles', type: 'choice', type_options: { multiple: true, choices: { 'ROLE_USER': 'ROLE_USER', 'ROLE_ADMIN': 'ROLE_ADMIN' } } }
         Tag:
             class: App\Entity\Tag
             form:

@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Security;
+use App\Entity\Poll;
 
 class Admin_controller extends EasyAdminController
 {
@@ -23,21 +24,37 @@ class Admin_controller extends EasyAdminController
 
     // Override of the method in EasyAdminController. Allowing us to show only current User's database
     public function createListQueryBuilder($entityClass, $sortDirection, $sortField = null, $dqlFilter = null){
-        $response =  parent::createListQueryBuilder($entityClass, $sortDirection, $sortField, $dqlFilter);
-        $user = $this->security->getUser();
-        $response->andWhere('entity.user = :userId')->setParameter('userId', $user);
 
+        $response =  parent::createListQueryBuilder($entityClass, $sortDirection, $sortField, $dqlFilter);
+        if($entityClass == Poll::class){
+            $user = $this->security->getUser();
+            $response->andWhere('entity.user = :userId')->setParameter('userId', $user);
+        }
         return $response;
     }
 
     // Override of the method in EasyAdminController. Allowing us to show only current User's database
     protected function createSearchQueryBuilder($entityClass, $searchQuery, array $searchableFields, $sortField = null, $sortDirection = null, $dqlFilter = null){
         $response =  parent::createSearchQueryBuilder($entityClass, $searchQuery, $searchableFields, $sortField, $sortDirection, $dqlFilter);
-        $user = $this->security->getUser();
-        $response->andWhere('entity.user = :userId')->setParameter('userId', $user);
-
+        if($entityClass == Poll::class){
+            $user = $this->security->getUser();
+            $response->andWhere('entity.user = :userId')->setParameter('userId', $user);
+        }
         return $response;
     }
+
+    // Creates a new instance of the entity being created. This instance is passed
+    // to the form created with the 'createNewForm()' method. Override this method
+    // if your entity has a constructor that expects some arguments to be passed
+    protected function createNewEntity(){
+        //dump($this->entity);
+        $entity = new $this->entity['class']($this->getUser());
+        return $entity;
+
+
+    }
+
+
 
     public function index(){
         return $this->render('admin/index.html.twig');
@@ -46,15 +63,6 @@ class Admin_controller extends EasyAdminController
     public function create_poll(){
         return $this->poll_service->create_poll();
     }
-
-
-
-
-
-
-
-
-
 
 
     /*
