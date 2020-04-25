@@ -21,5 +21,8 @@ app_admin_createPoll:
     path: /home/createPoll
     controller: App\Controller\Admin_controller::create_poll
 
+app_question_new:
+    path: /home/question
+    controller: App\Controller\QuestionController::new
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"

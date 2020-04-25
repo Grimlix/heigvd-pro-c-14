@@ -27,6 +27,10 @@ class Answer
      */
     private $question;
 
+    public function __toString(){
+        return $this->answerText;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
