@@ -58,7 +58,6 @@ class Admin_controller extends EasyAdminController
     }
 
 
-
     public function index(){
         return $this->render('admin/index.html.twig');
     }
