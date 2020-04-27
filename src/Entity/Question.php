@@ -59,7 +59,7 @@ class Question extends AbstractType
         return $this->text;
     }
 
-    public function setText(string $text): self{
+    public function setText(string $text){
         $this->text = $text;
 
         return $this;

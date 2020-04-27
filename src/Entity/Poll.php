@@ -5,9 +5,21 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Doctrine\ORM\Mapping\UniqueConstraint;
 
 /**
+ *
  * @ORM\Entity(repositoryClass="App\Repository\PoolRepository")
+ * @ORM\Table(
+ *     name="poll",
+ *     uniqueConstraints={@ORM\UniqueConstraint(columns={"user","name"})}
+ * )
+ * @UniqueEntity(
+ *     fields={"user","name"},
+ *     message="Vous avez deja un poll portant ce nom"
+ * )
+ * @UniqueEntity("passToken")
  */
 class Poll
 {
@@ -23,7 +35,7 @@ class Poll
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     private $passToken;
     /**
