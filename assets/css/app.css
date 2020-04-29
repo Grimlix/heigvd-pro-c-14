@@ -1,0 +1,45 @@
+/*!
+ * Bootswatch v4.4.1
+ * Homepage: https://bootswatch.com
+ * Copyright 2012-2020 Thomas Park
+ * Licensed under MIT
+ * Based on Bootstrap
+*/
+/*!
+ * Bootstrap v4.4.1 (https://getbootstrap.com/)
+ * Copyright 2011-2019 The Bootstrap Authors
+ * Copyright 2011-2019 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+
+:root {
+    --blue: #007bff;
+    --indigo: #6610f2;
+    --purple: #772953;
+    --pink: #e83e8c;
+    --red: #DF382C;
+    --orange: #E95420;
+    --yellow: #EFB73E;
+    --green: #38B44A;
+    --teal: #20c997;
+    --cyan: #17a2b8;
+    --white: #fff;
+    --gray: #868e96;
+    --gray-dark: #333;
+    --primary: #E95420;
+    --secondary: #AEA79F;
+    --success: #38B44A;
+    --info: #17a2b8;
+    --warning: #EFB73E;
+    --danger: #DF382C;
+    --light: #e9ecef;
+    --dark: #772953;
+    --breakpoint-xs: 0;
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --breakpoint-xl: 1200px;
+    --font-family-sans-serif: "Ubuntu", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+

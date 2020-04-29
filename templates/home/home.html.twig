@@ -22,38 +22,15 @@
     -->
 
 
-    <div class="jumbotron">
-        <form>
-            <fieldset>
-                <legend>Bienvenue</legend>
-                <p>Veuillez entrer les identitfiants nécessaires pour participier au poll</p>
-                <div class="form-group">
-                    <label for="identifiant">Nom et prénom</label>
-                    <input type="text" class="form-control" id="exempleIdentifiant1" placeholder="John Doe">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Mot de passe</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                </div>
-                <fieldset>
-                    <legend>Choisissez votre rôle</legend>
-                    <div class="form-group">
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" checked="">
-                            <label class="custom-control-label" for="customRadio1">Participant au questionnaire</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
-                            <label class="custom-control-label" for="customRadio2">Créateur de questionnaire</label>
-                        </div>
-                    </div>
-                </fieldset>
-                <button type="submit" class="btn btn-primary">Envoyer</button>
-            </fieldset>
+    <div id="boiteCode">
+        <img id = "ruban" src="../image/smileyREPONCE.png"   width=auto height=100/>
+        <form action="/action_page.php">
+            <input type="text" id="codeParticipation" name="code" placeholder="Code de participation">
         </form>
-
+        <form action="/action_page.php">
+            <input type="submit" value="PARTICIPER" >
+        </form>
     </div>
-
 
 
 
