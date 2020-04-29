@@ -77,4 +77,85 @@ class PollTest extends WebTestCase
 
     }
 
+    public function testPollIsCreatedWithSameToken(){
+        $client = static::createClient();
+
+        $crawler = $client->request('GET','/login');
+
+        $form = $crawler->selectButton('Log in')->form([
+            '_username' => 'JeanTest',
+            '_password' => '123',
+        ]);
+
+
+        $crawler = $client->submit($form);
+        $crawler = $client->followRedirect(true);
+
+        $crawler = $client->request('GET','/admin/?entity=Poll');
+        //Just to make sure we're on the right page
+        //$this->assertSelectorTextContains('html body','Pass token');
+
+
+        $addPoll = $crawler
+            ->filter('a:contains("Add Poll")')
+            ->eq(0) //select first link of the list
+            ->link();
+
+        $crawler = $client->click($addPoll);
+
+        //Just to make sure we're on the right page
+        //$this->assertSelectorTextContains('html body','Create Poll');
+
+        $createPollForm = $crawler->selectButton('Save changes')->form([
+            'poll[name]' => 'JeanFirstPoll2',
+            'poll[passToken]' => 'JeanCode',
+        ]);
+
+        $crawler = $client->submit($createPollForm);
+
+        $this->assertSelectorTextContains('html body',' This value is already used.');
+
+
+    }
+
+
+    public function testPollIsCreatedWithSameName(){
+        $client = static::createClient();
+
+        $crawler = $client->request('GET','/login');
+
+        $form = $crawler->selectButton('Log in')->form([
+            '_username' => 'JeanTest',
+            '_password' => '123',
+        ]);
+
+
+        $crawler = $client->submit($form);
+        $crawler = $client->followRedirect(true);
+
+        $crawler = $client->request('GET','/admin/?entity=Poll');
+        //Just to make sure we're on the right page
+        //$this->assertSelectorTextContains('html body','Pass token');
+
+
+        $addPoll = $crawler
+            ->filter('a:contains("Add Poll")')
+            ->eq(0) //select first link of the list
+            ->link();
+
+        $crawler = $client->click($addPoll);
+
+        //Just to make sure we're on the right page
+        //$this->assertSelectorTextContains('html body','Create Poll');
+
+        $createPollForm = $crawler->selectButton('Save changes')->form([
+            'poll[name]' => 'JeanFirstPoll',
+            'poll[passToken]' => 'JeanCode',
+        ]);
+
+        $crawler = $client->submit($createPollForm);
+
+        $this->assertSelectorTextContains('html body','Vous avez deja un poll portant ce nom');
+
+    }
 }
