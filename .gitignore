@@ -61,3 +61,8 @@
 /web/js/
 
 # End of https://www.gitignore.io/api/symfony
+###> symfony/phpunit-bridge ###
+.phpunit
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###
