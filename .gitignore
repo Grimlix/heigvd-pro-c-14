@@ -61,6 +61,7 @@
 /web/js/
 
 # End of https://www.gitignore.io/api/symfony
+
 ###> symfony/webpack-encore-bundle ###
 /node_modules/
 /public/build/
@@ -162,3 +163,8 @@ fabric.properties
 
 # End of https://www.gitignore.io/api/phpstorm
 
+###> symfony/phpunit-bridge ###
+.phpunit
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###

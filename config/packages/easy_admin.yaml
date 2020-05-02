@@ -1,0 +1,58 @@
+easy_admin:
+    design:
+        menu:
+            - label: 'Utilities'
+              icone: 'newspaper-o'
+              children:
+                  - {entity: 'Poll'}
+                  - {entity: 'Question'}
+            - label: 'Option'
+              icone: 'newspaper-o'
+              children:
+                - {entity: 'Tag'}
+                - {entity: 'User'} 
+
+    entities:
+        User:
+          class: App\Entity\User
+          list:
+            fields:
+              - 'username'
+              - 'email'
+              - 'lastLogin'
+        Poll:
+            class: App\Entity\Poll
+            form:
+              fields:
+                - 'name'
+                - 'passToken'
+                - { property: 'questions', type: 'collection', type_options: { entry_type: 'App\Entity\Question', allow_delete: true, allow_add: true, by_reference: false} }
+            list:
+              fields:
+                - 'name'
+                - 'passToken'
+                - 'questions'
+
+        Question:
+            class: App\Entity\Question
+            form:
+              fields:
+                - 'text'
+                - 'poll'
+                - 'tags'
+                - { property: 'answers', type: 'collection', type_options: { entry_type: 'App\Form\AnswerEmbeddedForm', allow_delete: true, allow_add: true, by_reference: false} }
+            list:
+              fields:
+                - 'text'
+                - 'poll'
+                - 'tags'
+                - 'answers'
+
+        Answer:
+            class: App\Entity\Answer
+        Tag:
+            class: App\Entity\Tag
+            form:
+              fields:
+              - {property: 'name'}
+
