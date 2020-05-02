@@ -43,9 +43,7 @@ class Admin_controller extends EasyAdminController
 
     // fonction page home ici pour l'instant
 
-    /**
-     * @Route("/", name="home")
-     */
+
     public function home()
     {
         return $this->render('home/home.html.twig');
