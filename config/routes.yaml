@@ -3,25 +3,31 @@
 #    controller: App\Controller\DefaultController::index
 
 app_demo_getTemplate:
-    path: /demo/getTemplate
-    controller: App\Controller\Demo_controller::get_template
+  path: /demo/getTemplate
+  controller: App\Controller\Demo_controller::get_template
 app_demo_getHttpResponse:
-    path: /demo/getHttpResponse
-    controller: App\Controller\Demo_controller::get_http_response
+  path: /demo/getHttpResponse
+  controller: App\Controller\Demo_controller::get_http_response
 app_demo_getRandomNumber:
-    path: /demo/getRandomNumber
-    controller: App\Controller\Demo_controller::get_random_number
+  path: /demo/getRandomNumber
+  controller: App\Controller\Demo_controller::get_random_number
+
+fos_user:
+  resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+app_user_index:
+  path: /
+  controller: App\Controller\Token_controller::index
+app_user_poll:
+  path: /poll
+  controller: App\Controller\Poll_controller::validateToken
 
 app_admin_index:
-    path: /home
-    controller: App\Controller\Admin_controller::index
-
+  path: /home
+  controller: App\Controller\Admin_controller::index
 app_admin_createPoll:
-    path: /home/createPoll
-    controller: App\Controller\Admin_controller::create_poll
-
+  path: /home/createPoll
+  controller: App\Controller\Admin_controller::create_poll
 app_question_new:
-    path: /home/question
-    controller: App\Controller\QuestionController::new
-fos_user:
-    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+  path: /home/question
+  controller: App\Controller\QuestionController::new
