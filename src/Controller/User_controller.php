@@ -48,7 +48,7 @@ class User_controller extends EasyAdminController{
             'question' => $question,
             'answers' => $answers,
             'formUrl' => $_SERVER['SYMFONY_WEBSITE_ROOT_URL'] . '/incrementPollStatistic/' . $poll_token,
-            'listenerUrl' => $_ENV['SYMFONY_WEBSITE_ROOT_URL'] . '/home/runPoll/' . $poll_token]);
+            'listenerUrl' => $_ENV['SYMFONY_WEBSITE_ROOT_URL'] . '/getPoll/' . $poll_token]);
 
     }
     public function increment_poll_statistic($poll_token){

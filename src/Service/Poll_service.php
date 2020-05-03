@@ -57,10 +57,15 @@ class Poll_service
     }
     public function update_poll_clients($poll_token){
         $update = new Update(
-            $_ENV['SYMFONY_WEBSITE_ROOT_URL'] . '/user/getPoll/' . $poll_token,
+            $_ENV['SYMFONY_WEBSITE_ROOT_URL'] . '/getPoll/' . $poll_token,
             json_encode(['action' => 'reload'])
         );
         $this->bus->dispatch($update);
+        $update_admin = new Update(
+            $_ENV['SYMFONY_WEBSITE_ROOT_URL'] . '/home/runPoll/' . $poll_token,
+            json_encode(['action' => 'reload'])
+        );
+        $this->bus->dispatch($update_admin);
     }
 
     public function set_next_question($poll_token){
