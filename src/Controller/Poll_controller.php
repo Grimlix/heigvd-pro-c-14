@@ -25,17 +25,14 @@ class Poll_controller extends AbstractController
             // Search a matching poll
             $poll = $repository->findOneBy(['passToken' => $token]);
 
-            // The poll exists
-            if ($poll != null) {
-                return $this->render('admin/poll.html.twig', [
-                    'pollID' => $poll->getId(),
-                    'pollName' => $poll->getName(),
-                    'token' => $poll->getPassToken(),
-                    'userID' => $poll->getUser()->getId(),
-                ]);
-            } else { // The poll doesn't exist
-                return $this->render('admin/poll_inexistent.html.twig');
-            }
+            return $this->render('admin/poll.html.twig', [
+                'pollID' => $poll->getId(),
+                'pollName' => $poll->getName(),
+                'token' => $poll->getPassToken(),
+                'userID' => $poll->getUser()->getId(),
+            ]);
+
+
         }
         // Default : acces to /poll redirects to /
         return $this->redirectToRoute('app_user_index');
