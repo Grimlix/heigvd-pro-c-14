@@ -19,8 +19,7 @@ class Admin_controller extends EasyAdminController
     private $poll_statistic_service;
     private $security;
 
-
-    public function __construct(Poll_service $poll_service, Security $security, Poll_statistic_service $poll_statistic_service){
+    public function __construct(Poll_service $poll_service, Security $security, Poll_statistic_service $poll_statistic_service ){
         $this->poll_service = $poll_service;
         $this->security = $security;
         $this->poll_statistic_service = $poll_statistic_service;
@@ -75,6 +74,15 @@ class Admin_controller extends EasyAdminController
         return $response;
     }
 
+
+    // fonction page home ici pour l'instant
+
+
+    public function home()
+    {
+        return $this->render('home/home.html.twig');
+    }
+
     // Override of the method in EasyAdminController. Allowing us to show only current User's database
     protected function createSearchQueryBuilder($entityClass, $searchQuery, array $searchableFields, $sortField = null, $sortDirection = null, $dqlFilter = null){
         $response =  parent::createSearchQueryBuilder($entityClass, $searchQuery, $searchableFields, $sortField, $sortDirection, $dqlFilter);
@@ -98,6 +106,7 @@ class Admin_controller extends EasyAdminController
 
     public function index(){
         return $this->render('admin/index.html.twig');
+
     }
 
 

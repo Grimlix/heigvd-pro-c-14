@@ -55,6 +55,8 @@ class Question extends AbstractType
     {
         $this->tags = new ArrayCollection();
         $this->answers = new ArrayCollection();
+        $this->open = false;
+        $this->close = false;
     }
 
     /* For easyAdmin */

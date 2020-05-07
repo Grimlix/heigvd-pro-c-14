@@ -14,14 +14,14 @@ app_demo_getRandomNumber:
 
 app_admin_index:
     path: /home
-    controller: App\Controller\Admin_controller::index
-app_admin_createPoll:
-    path: /home/createPoll
-    controller: App\Controller\Admin_controller::create_poll
+    controller: App\Controller\Admin_controller::home
+#app_admin_createPoll:
+  #  path: /home/createPoll
+ #   controller: App\Controller\Admin_controller::create_poll
 app_question_new:
     path: /home/question
     controller: App\Controller\QuestionController::new
-    
+
 app_admin_runPoll:
     path: /home/runPoll/{poll_token}
     controller: App\Controller\Admin_controller::run_poll
@@ -36,7 +36,7 @@ app_user_getPoll:
 app_user_incrementPollStatistic:
     path: /incrementPollStatistic/{poll_token}
     controller: App\Controller\User_controller::increment_poll_statistic
-      
+
 
 
 fos_user:
