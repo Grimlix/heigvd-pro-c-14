@@ -31,11 +31,6 @@ class Question extends AbstractType
     private $poll;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Tag", inversedBy="questions")
-     */
-    private $tags;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Answer", mappedBy="question", cascade={"remove", "persist"}, orphanRemoval=true)
      */
     private $answers;
@@ -99,32 +94,6 @@ class Question extends AbstractType
 
     public function setPoll(?Poll $poll): self{
         $this->poll = $poll;
-        return $this;
-    }
-
-    /**
-     * @return Collection|Tag[]
-     */
-    public function getTags(): Collection
-    {
-        return $this->tags;
-    }
-
-    public function addTag(Tag $tag): self
-    {
-        if (!$this->tags->contains($tag)) {
-            $this->tags[] = $tag;
-        }
-
-        return $this;
-    }
-
-    public function removeTag(Tag $tag): self
-    {
-        if ($this->tags->contains($tag)) {
-            $this->tags->removeElement($tag);
-        }
-
         return $this;
     }
 

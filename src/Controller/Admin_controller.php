@@ -35,6 +35,7 @@ class Admin_controller extends EasyAdminController
             return $this->render('admin/runningPoll.html.twig', [
                 'question' => 'no question currently running',
                 'nextQuestionUrl' =>  $_SERVER['SYMFONY_WEBSITE_ROOT_URL'] . '/home/setNextQuestion/' . $poll_token,
+                'lastQuestionUrl' => $_SERVER['SYMFONY_WEBSITE_ROOT_URL'] . '/home/setLastQuestion/' . $poll_token,
                 'nbQuestionAnswered' => $this->poll_statistic_service->get_answered_poll_count(),
                 'listenerUrl' => $_ENV['SYMFONY_WEBSITE_ROOT_URL'] . '/home/runPoll/' . $poll_token
             ]);
@@ -44,6 +45,7 @@ class Admin_controller extends EasyAdminController
             return $this->render('admin/runningPoll.html.twig', [
                 'question' => $question,
                 'nextQuestionUrl' =>  $_SERVER['SYMFONY_WEBSITE_ROOT_URL'] . '/home/setNextQuestion/' . $poll_token,
+                'lastQuestionUrl' => $_SERVER['SYMFONY_WEBSITE_ROOT_URL'] . '/home/setLastQuestion/' . $poll_token,
                 'nbQuestionAnswered' => $this->poll_statistic_service->get_answered_poll_count(),
                 'listenerUrl' => $_ENV['SYMFONY_WEBSITE_ROOT_URL'] . '/home/runPoll/' . $poll_token
             ]);
@@ -55,9 +57,11 @@ class Admin_controller extends EasyAdminController
         return new Response('set next question');
     }
 
-
-
-
+    public function set_last_question($poll_token){
+        $this->poll_service->set_last_question($poll_token);
+        $this->poll_service->update_poll_clients($poll_token);
+        return new Response('set last question');
+    }
 
 
     // Override of the method in EasyAdminController. Allowing us to show only current User's database
@@ -76,8 +80,6 @@ class Admin_controller extends EasyAdminController
 
 
     // fonction page home ici pour l'instant
-
-
     public function home()
     {
         return $this->render('home/home.html.twig');

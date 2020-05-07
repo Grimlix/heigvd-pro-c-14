@@ -2,22 +2,10 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
-app_demo_getTemplate:
-    path: /demo/getTemplate
-    controller: App\Controller\Demo_controller::get_template
-app_demo_getHttpResponse:
-    path: /demo/getHttpResponse
-    controller: App\Controller\Demo_controller::get_http_response
-app_demo_getRandomNumber:
-    path: /demo/getRandomNumber
-    controller: App\Controller\Demo_controller::get_random_number
-
 app_admin_index:
     path: /home
     controller: App\Controller\Admin_controller::home
-#app_admin_createPoll:
-  #  path: /home/createPoll
- #   controller: App\Controller\Admin_controller::create_poll
+
 app_question_new:
     path: /home/question
     controller: App\Controller\QuestionController::new
@@ -25,18 +13,22 @@ app_question_new:
 app_admin_runPoll:
     path: /home/runPoll/{poll_token}
     controller: App\Controller\Admin_controller::run_poll
+
 app_admin_setNextQuestion:
     path: /home/setNextQuestion/{poll_token}
     controller: App\Controller\Admin_controller::set_next_question
 
+app_admin_setLastQuestion:
+    path: /home/setLastQuestion/{poll_token}
+    controller: App\Controller\Admin_controller::set_last_question
 
 app_user_getPoll:
     path: /getPoll/{poll_token}
     controller: App\Controller\User_controller::get_poll
+
 app_user_incrementPollStatistic:
     path: /incrementPollStatistic/{poll_token}
     controller: App\Controller\User_controller::increment_poll_statistic
-
 
 
 fos_user:

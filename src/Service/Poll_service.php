@@ -95,11 +95,20 @@ class Poll_service
         }
     }
 
-
-
-
-
-
+    public function set_last_question($poll_token){
+        $next_question =
+            $this->entity_manager
+                ->getRepository(Question::class)
+                ->findOneBy([
+                    'poll' => $this->entity_manager->getRepository(Poll::class)->findOneBy(['passToken' => $poll_token])->getId(),
+                    'open' => true,
+                    'close' => true
+                ]);
+        if($next_question){
+            $next_question->setClose(0);
+            $this->entity_manager->flush();
+        }
+    }
 
 
 
