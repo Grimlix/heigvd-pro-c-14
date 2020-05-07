@@ -1,0 +1,17 @@
+<h1>Current question: {{question}}</h1>
+<form action="{{nextQuestionUrl}}" target="result" method="get">
+    <input type="submit" value="Next question" />
+</form>
+
+</br></br>
+Number poll question answered: {{nbQuestionAnswered}}
+
+
+ <script type="text/javascript">
+const eventSource = new EventSource('http://localhost:3000/.well-known/mercure?topic=' + encodeURIComponent('{{listenerUrl}}'));
+eventSource.onmessage = event => {
+    // Will be called every time an update is published by the server
+    console.log(JSON.parse(event.data));
+	location.reload();
+}
+  </script>

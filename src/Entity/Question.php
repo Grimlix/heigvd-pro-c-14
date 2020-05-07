@@ -40,10 +40,23 @@ class Question extends AbstractType
      */
     private $answers;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $open;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $close;
+
+
     public function __construct()
     {
         $this->tags = new ArrayCollection();
         $this->answers = new ArrayCollection();
+        $this->open = false;
+        $this->close = false;
     }
 
     /* For easyAdmin */
@@ -61,7 +74,22 @@ class Question extends AbstractType
 
     public function setText(string $text){
         $this->text = $text;
+        return $this;
+    }
 
+    public function getOpen(): ?boolean{
+        return $this->open;
+    }
+    public function setOpen(bool $open){
+        $this->open = $open;
+        return $this;
+    }
+
+    public function getClose(): ?boolean{
+        return $this->close;
+    }
+    public function setClose(bool $close){
+        $this->close = $close;
         return $this;
     }
 
@@ -71,7 +99,6 @@ class Question extends AbstractType
 
     public function setPoll(?Poll $poll): self{
         $this->poll = $poll;
-
         return $this;
     }
 

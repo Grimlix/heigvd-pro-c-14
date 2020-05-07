@@ -24,9 +24,10 @@
 
     <div id="boiteCode">
         <img id = "ruban" src="../image/smileyREPONCE.png"   width=auto height=100/>
-        <form action="/action_page.php">
+        <form action="app_admin_index">
             <input type="text" id="codeParticipation" name="code" placeholder="Code de participation">
         </form>
+        <form action="{{ path('app_user_getPoll') }}"></form>
         <form action="/action_page.php">
             <input type="submit" value="PARTICIPER" >
         </form>
