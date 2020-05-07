@@ -8,6 +8,9 @@ use App\Service\Poll_service;
 use App\Service\Poll_statistic_service;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\EasyAdminController;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
+use Symfony\Component\Routing\Annotation\Route;
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Security;
@@ -75,6 +78,17 @@ class Admin_controller extends EasyAdminController
         return $response;
     }
 
+
+    // fonction page home ici pour l'instant
+
+    /**
+     * @Route("/", name="home")
+     */
+    public function home()
+    {
+        return $this->render('home/home.html.twig');
+    }
+
     // Override of the method in EasyAdminController. Allowing us to show only current User's database
     protected function createSearchQueryBuilder($entityClass, $searchQuery, array $searchableFields, $sortField = null, $sortDirection = null, $dqlFilter = null){
         $response =  parent::createSearchQueryBuilder($entityClass, $searchQuery, $searchableFields, $sortField, $sortDirection, $dqlFilter);
@@ -98,6 +112,7 @@ class Admin_controller extends EasyAdminController
 
     public function index(){
         return $this->render('admin/index.html.twig');
+
     }
 
 
