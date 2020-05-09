@@ -1,0 +1,22 @@
+<form action="{{formUrl}}" target="result" method="get">
+
+
+</br>
+{{ question }}
+</br>
+{% for answer in answers %}
+	<input type="radio" id="{{answer.id}}" name="{{answer.question}}" value="{{answer.id}}" >
+	<label for="{{answer.id}}">{{answer.answerText}}</label><br>
+{% endfor %}
+<p><input type="submit" value="Submit"></p>
+</form>
+
+
+ <script type="text/javascript">
+const eventSource = new EventSource('http://localhost:3000/.well-known/mercure?topic=' + encodeURIComponent('{{listenerUrl}}'));
+eventSource.onmessage = event => {
+    // Will be called every time an update is published by the server
+    console.log(JSON.parse(event.data));
+	location.reload();
+}
+  </script>

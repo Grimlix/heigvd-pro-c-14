@@ -31,19 +31,27 @@ class Question extends AbstractType
     private $poll;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Tag", inversedBy="questions")
-     */
-    private $tags;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Answer", mappedBy="question", cascade={"remove", "persist"}, orphanRemoval=true)
      */
     private $answers;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $open;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $close;
+
 
     public function __construct()
     {
         $this->tags = new ArrayCollection();
         $this->answers = new ArrayCollection();
+        $this->open = false;
+        $this->close = false;
     }
 
     /* For easyAdmin */
@@ -61,7 +69,22 @@ class Question extends AbstractType
 
     public function setText(string $text){
         $this->text = $text;
+        return $this;
+    }
 
+    public function getOpen(): ?boolean{
+        return $this->open;
+    }
+    public function setOpen(bool $open){
+        $this->open = $open;
+        return $this;
+    }
+
+    public function getClose(): ?boolean{
+        return $this->close;
+    }
+    public function setClose(bool $close){
+        $this->close = $close;
         return $this;
     }
 
@@ -71,33 +94,6 @@ class Question extends AbstractType
 
     public function setPoll(?Poll $poll): self{
         $this->poll = $poll;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Tag[]
-     */
-    public function getTags(): Collection
-    {
-        return $this->tags;
-    }
-
-    public function addTag(Tag $tag): self
-    {
-        if (!$this->tags->contains($tag)) {
-            $this->tags[] = $tag;
-        }
-
-        return $this;
-    }
-
-    public function removeTag(Tag $tag): self
-    {
-        if ($this->tags->contains($tag)) {
-            $this->tags->removeElement($tag);
-        }
-
         return $this;
     }
 

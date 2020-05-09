@@ -1,17 +1,9 @@
 easy_admin:
     design:
         menu:
-            - label: 'Utilities'
-              icone: 'newspaper-o'
-              children:
-                  - {entity: 'Poll'}
-                  - {entity: 'Question'}
-            - label: 'Option'
-              icone: 'newspaper-o'
-              children:
-                - {entity: 'Tag'}
-                - {entity: 'User'} 
-
+              - {entity: 'Poll'}
+              - {entity: 'Question'}
+              - {entity: 'User'}
     entities:
         User:
           class: App\Entity\User
@@ -39,20 +31,14 @@ easy_admin:
               fields:
                 - 'text'
                 - 'poll'
-                - 'tags'
                 - { property: 'answers', type: 'collection', type_options: { entry_type: 'App\Form\AnswerEmbeddedForm', allow_delete: true, allow_add: true, by_reference: false} }
             list:
               fields:
                 - 'text'
                 - 'poll'
-                - 'tags'
                 - 'answers'
 
         Answer:
             class: App\Entity\Answer
-        Tag:
-            class: App\Entity\Tag
-            form:
-              fields:
-              - {property: 'name'}
+
 
