@@ -24,6 +24,8 @@ easy_admin:
                 - 'name'
                 - 'passToken'
                 - 'questions'
+              actions:
+                - { name: 'Run', type: 'route' }
 
         Question:
             class: App\Entity\Question
