@@ -2,6 +2,13 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
+app_user_index:
+  path: /
+  controller: App\Controller\Token_controller::index
+app_user_poll:
+  path: /poll
+  controller: App\Controller\Poll_controller::validateToken
+
 app_admin_index:
     path: /home
     controller: App\Controller\Admin_controller::home

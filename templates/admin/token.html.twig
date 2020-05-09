@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <a href="{{ path('fos_user_security_login') }}">Login admin</a>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>Token login</h1>
+                {{ form_start(tokenForm, {'action': '/poll'}) }}
+                {{ form_widget(tokenForm) }}
+                {{ form_end(tokenForm) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

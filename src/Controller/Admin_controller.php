@@ -107,7 +107,7 @@ class Admin_controller extends EasyAdminController
 
 
     public function index(){
-        return $this->render('admin/index.html.twig');
+        return $this->render('poll.html.twig');
     }
 
 
