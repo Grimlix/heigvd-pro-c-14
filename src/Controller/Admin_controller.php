@@ -36,7 +36,7 @@ class Admin_controller extends EasyAdminController
                 'question' => 'no question currently running',
                 'nextQuestionUrl' =>  $_SERVER['SYMFONY_WEBSITE_ROOT_URL'] . '/home/setNextQuestion/' . $poll_token,
                 'lastQuestionUrl' => $_SERVER['SYMFONY_WEBSITE_ROOT_URL'] . '/home/setLastQuestion/' . $poll_token,
-                'nbQuestionAnswered' => $this->poll_statistic_service->get_answered_poll_count(),
+                'nbQuestionAnswered' => $this->poll_statistic_service->get_answered_poll_count($poll_token),
                 'listenerUrl' => $_ENV['SYMFONY_WEBSITE_ROOT_URL'] . '/home/runPoll/' . $poll_token
             ]);
 
@@ -46,7 +46,7 @@ class Admin_controller extends EasyAdminController
                 'question' => $question,
                 'nextQuestionUrl' =>  $_SERVER['SYMFONY_WEBSITE_ROOT_URL'] . '/home/setNextQuestion/' . $poll_token,
                 'lastQuestionUrl' => $_SERVER['SYMFONY_WEBSITE_ROOT_URL'] . '/home/setLastQuestion/' . $poll_token,
-                'nbQuestionAnswered' => $this->poll_statistic_service->get_answered_poll_count(),
+                'nbQuestionAnswered' => $this->poll_statistic_service->get_answered_poll_count($poll_token),
                 'listenerUrl' => $_ENV['SYMFONY_WEBSITE_ROOT_URL'] . '/home/runPoll/' . $poll_token
             ]);
         }

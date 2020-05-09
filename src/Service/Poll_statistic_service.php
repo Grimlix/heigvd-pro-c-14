@@ -22,37 +22,36 @@ class Poll_statistic_service
         $this->bus = $bus;
     }
 
-    public function get_answered_poll_count()
+    public function get_answered_poll_count($poll_token)
     {
         $poll_statistic = $this->entity_manager
             ->getRepository(PollStatistic::class)
-            ->find(1);
+            ->findOneBy(array('passToken' => $poll_token));
         if (!$poll_statistic) {
-            $this->create_poll_statistic();
+            $this->create_poll_statistic($poll_token);
             $poll_statistic = $this->entity_manager
                 ->getRepository(PollStatistic::class)
-                ->find(1);
+                ->findOneBy(array('passToken' => $poll_token));
         }
         return $poll_statistic->getCount();
     }
-    public function increment_poll_count()
+    public function increment_poll_count($poll_token)
     {
         $poll_statistic = $this->entity_manager
             ->getRepository(PollStatistic::class)
-            ->find(1);
+            ->findOneBy(array('passToken' => $poll_token));
         if (!$poll_statistic) {
-            $this->create_poll_statistic();
+            $this->create_poll_statistic($poll_token);
             $poll_statistic = $this->entity_manager
                 ->getRepository(PollStatistic::class)
-                ->find(1);
+                ->findOneBy(array('passToken' => $poll_token));
         }
         $poll_statistic->setCount($poll_statistic->getCount() + 1);
         $this->entity_manager->flush();
 
     }
-    private function create_poll_statistic(){
-        $poll_statistic = new PollStatistic();
-        $poll_statistic->setCount(0);
+    private function create_poll_statistic($poll_token){
+        $poll_statistic = new PollStatistic($poll_token);
         $this->entity_manager->persist($poll_statistic);
         $this->entity_manager->flush();
     }

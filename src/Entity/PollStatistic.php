@@ -22,7 +22,14 @@ class PollStatistic
     private $count;
 
 
+    /**
+     * @ORM\Column(type="string", length=255, unique=true)
+     */
+    private $passToken;
 
+    public function getPassToken(): ?string {
+        return $this->$this->passToken;
+    }
 
     public function getId(): ?int
     {
@@ -35,5 +42,10 @@ class PollStatistic
     public function setCount(int $count){
         $this->count = $count;
         return $this;
+    }
+
+    public function __construct($token){
+        $this->passToken = $token;
+        $this->setCount(0);
     }
 }
