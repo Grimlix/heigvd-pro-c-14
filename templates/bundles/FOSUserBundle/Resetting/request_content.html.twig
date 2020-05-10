@@ -1,0 +1,23 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="row">
+    <div id="col" class="col">
+        <div class="jumbotron bg-light centered shadow-lg text-center">
+            <div class="smiley-reponce">
+                <img src="{{asset('image/smileyREPONCE.png')}}" alt="PointRéponse" style="width: 85px; height: auto;">
+            </div>
+            <p>Entrez l'adresse courriel associée à votre compte ou votre nom d'utlisateur.<br />
+                Cliquez sur soumettre pour obtenir un lien de réinitialisation par courriel.</p>
+            <form class="text-center form-styled" action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+                <div class="input-group mb-4">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">@</div>
+                    </div>
+                    <input type="text" class="form-control text-center" id="username" name="username" required="required" placeholder="{{ 'resetting.request.username'|trans }}" />
+                </div>
+                    <input class="btn btn-orange-filled rounded-pill text-uppercase px-5" type="submit" value="{{ 'resetting.request.submit'|trans }}" />
+            </form>
+
+        </div>
+    </div>
+</div>

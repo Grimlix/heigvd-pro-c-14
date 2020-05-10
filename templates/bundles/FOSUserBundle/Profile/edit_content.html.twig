@@ -1,0 +1,63 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+
+
+
+
+<div class="row">
+    <div id="col" class="col">
+        <div class="jumbotron bg-light centered shadow-lg text-center" style="min-width: 300px;">
+            <div class="smiley-reponce">
+                <img src="{{asset('image/smileyREPONCE.png')}}" alt="PointRéponse" style="width: 85px; height: auto;">
+            </div>
+
+            {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'form-styled-stand-alone' } }) }}
+            <div class="row">
+                <div class="col">
+                    <div class="error-txt">
+                        {{ form.username.vars.errors }}
+                    </div>
+                    <div class="input-group mb-4">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><span class="material-icons">person</span></div>
+                        </div>
+                        {{ form_widget(form.username, {'attr': {'placeholder': 'nom d\'utilisateur', 'class':'form-control'}}) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="error-txt">
+                        {{ form.email.vars.errors }}
+                    </div>
+                    <div class="input-group mb-4">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">@</div>
+                        </div>
+                        {{ form_widget(form.email, {'attr': {'placeholder': 'nom d\'utilisateur', 'class':'form-control'}}) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="error-txt">
+                        {{ form.current_password.vars.errors }}
+                    </div>
+                    <div class="input-group mb-4">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><span class="material-icons">lock_open</span></div>
+                        </div>
+                        {{ form_widget(form.current_password, {'attr': {'placeholder': 'mot de passe actuel', 'class':'form-control'}}) }}
+                    </div>
+                </div>
+            </div>
+            {{ form_widget(form) }}
+            <div>
+                <input class="btn btn-orange-filled rounded-pill text-uppercase px-5" type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>

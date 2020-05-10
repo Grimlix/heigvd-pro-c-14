@@ -1,0 +1,8 @@
+// the ~ allows you to reference things in node_modules
+
+// customize some Bootstrap variables
+// $primary: darken(#428bca, 20%);
+
+@import "~bootstrap/scss/bootstrap";
+
+@import "~bootstrap-material-design-icons/scss/material-icons";
