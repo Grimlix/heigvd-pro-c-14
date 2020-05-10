@@ -7,10 +7,27 @@
 
 // any CSS you import will output into a single css file (app.css in this case)
 import '../css/app.css';//
+import '../css/simple-sidebar.css';//
+
 require('../css/app.css');
+
+import "../css/global.scss";
+
+const $ = require('jquery');
+
+require('bootstrap');
+
+import '../js/custom.js';//
+//require('../js/custom.js');
+
+
 //import '../templates/style.css';
-
+//import $ from 'jquery';
 // Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
-// import $ from 'jquery';
 
-console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
+// create global $ and jQuery variables
+global.$ = global.jQuery = $;
+
+window.$ = window.jQuery = require('jquery');
+
+//console.log('Hello Webpack Encore! Edit me in assets/js/app.js');

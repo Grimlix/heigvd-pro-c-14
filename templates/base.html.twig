@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <!--<link rel="stylesheet" href="https://bootswatch.com/4/united/bootstrap.min.css"> -->
+        <title>{% block title %}PointRéponse{% endblock %}</title>
+        <link rel="icon" type="image/png" href="{{ asset('image/favicon/favicon-16.png') }}" sizes="16x16" />
+        <link rel="icon" type="image/png" href="{{ asset('image/favicon/favicon-32.png') }}" sizes="32x32" />
+        <link rel="icon" type="image/png" href="{{ asset('image/favicon/favicon-96.png') }}" sizes="96x96" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         {% block stylesheets %}
             {# 'app' must match the first argument to addEntry() in webpack.config.js #}
@@ -13,94 +16,87 @@
                  <link rel="stylesheet" href="/build/app.css"> -->
             <!-- yarn run encore dev --watch -->
         {% endblock %}
-    </head>
-    <!-- <img src="imagePoll alt="img1"> -->
-
-    <body>  <!-- ICI c'est le body que toute les page vont avoir -->
-
-    <div id="menufond">
-        <ul id="menu">
-            <li>
-                <a style="cursor:pointer" onclick ="openNav()" >
-                    <img src="../image/barreCHOIX4.png"  width=auto height=60/>
-                </a>
-            </li>
-            <li>
-                <a href="">
-                    <img src="../image/BoutonPR.png"  width=auto height=60/>
-                </a>
-            </li>
-            <li>
-                <a href="">
-                    <img src="../image/loginREPONCE.png"  width=auto height=60/>
-                </a>
-            </li>
-        </ul>
-    </div>
-
-    <!-- list menu déroulant -->
-
-    <div id="myNav" class="overlay">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <div class="overlay-content">
-
-            <p>MENU</p>
-
-            <a class="flotte">
-                <img src="../image/loginREPONCE.png" width=auto height=30/>
-            </a>
-            <a href="#" style="line-height:30px;">CONNECTION</a>
-
-            <a class="flotte">
-                <img src="../image/info.png"  width=auto height=30/>
-            </a>
-            <a href="#" style="line-height:35px;">A PROPOS</a>
 
 
-            <p id = "menuClair" >__________________</p>
-            <a class="flotte">
-                <img src="../image/roue.png" width=auto height=30/>
-            </a>
-            <a id = "menuClair" href="#" style="line-height:25px; ">PARAMETRES</a>
-
-            <a class="flotte" class="clear">
-                <img src="../image/deco.png"  width=auto height=25/>
-            </a>
-            <a id = "menuClair" href="#"style="line-height:30px;">SE DECONNECTER</a>
-
-
-        </div>
-    </div>
-
-
-    <script>
-        function openNav() {
-            document.getElementById("myNav").style.width = "400px";
-        }
-
-        function closeNav() {
-            document.getElementById("myNav").style.width = "0%";
-        }
-    </script>
-
-
-
-
-        <div class="container">
-            {% block body %}{% endblock %}
-        </div>
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
-
             <!-- Renders app.js & a webpack runtime.js file
                 <script src="/build/runtime.js"></script>
                 <script src="/build/app.js"></script> -->
         {% endblock %}
 
 
-       </div>
+    </head>
 
+    <body>
 
+    <div class="d-flex" id="wrapper">
+
+        <!-- Sidebar -->
+        <div class="bg-light border-right orange-text" id="sidebar-wrapper">
+            <div class="sidebar-heading text-center">Menu <button type="button" class="close menu-toggle" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="list-group list-group-flush text-uppercase orange-text">
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <a class="border-0 list-group-item list-group-item-action bg-light" href="{{ path('fos_user_profile_show') }}"><span class="material-icons">person_outline</span> Mon compte</a>
+                    <a class="border-0 list-group-item list-group-item-action bg-light" href="{{ path('fos_user_security_logout') }}"><span class="material-icons">clear</span> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
+                {% else %}
+                    <a class="border-0 list-group-item list-group-item-action bg-light" href="{{ url('fos_user_security_login') }}"><span class="material-icons">person_outline</span> se connecter</a>
+                    <a class="border-0 list-group-item list-group-item-action bg-light" href="{{ url('fos_user_registration_register') }}"><span class="material-icons">person_add</span> créer un compte</a>
+                {% endif %}
+                <div class="dropdown-divider"></div>
+                <a href="#" class="border-0 list-group-item list-group-item-action bg-light"><span class="material-icons">info</span> à propos</a>
+            </div>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between shadow-sm">
+                <button class="menu-toggle btn btn-orange"><span class="material-icons orange-text text-medium">menu</span></button>
+
+                <a class="btn btn-orange" href="/"><img src="{{asset('image/BoutonPR.png')}}" alt="PointRéponse" style="width:auto; height:3em;margin-top:-17px;"></a>
+                <div class="dropdown">
+                    <button type="button" class="btn btn-orange" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            <span class="orange-text d-none d-sm-inline" style="top: -8px;position: relative;line-height: 0;vertical-align: baseline;">
+                                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
+                            </span>
+                        {% endif %}
+                        <span class="material-icons text-medium orange-text">
+                            person_outline
+                        </span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            <a class="dropdown-item" href="{{ path('fos_user_profile_show') }}">Mon compte</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" type="button" href="{{ path('fos_user_security_logout') }}">
+                                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                            </a>
+                        {% else %}
+                            <a class="dropdown-item" type="button" href="{{ url('fos_user_security_login') }}">se connecter</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" type="button" href="{{ url('fos_user_registration_register') }}">créer un compte</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </nav>
+
+            <!-- page content -->
+            <div class="container-fluid">
+                {%  block body %}
+
+                {% endblock %}
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
 
     </body>
 

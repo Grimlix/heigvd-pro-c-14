@@ -22,6 +22,36 @@
     -->
 
 
+    <div class="row">
+        <div id="col" class="col">
+            <div class="jumbotron bg-light centered shadow-lg text-center">
+                <div class="smiley-reponce">
+                    <img src="{{asset('image/smileyREPONCE.png')}}" alt="PointRéponse" style="width: 85px; height: auto;">
+                </div>
+
+                <form class="text-center form-styled">
+                    <div class="row">
+                        <div class="col">
+                            <label class="sr-only" for="participationCode">Code de participation</label>
+                            <div class="input-group mb-4">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><span class="material-icons">vpn_key</span></div>
+                                </div>
+                                <input type="text" class="form-control text-center" id="participationCode" placeholder="Code de participation">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col  text-center">
+                            <button type="submit" class="btn btn-orange-filled rounded-pill text-uppercase px-5">participer</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<!--
     <div id="boiteCode">
         <img id = "ruban" src="../image/smileyREPONCE.png"   width=auto height=100/>
         <form action="/action_page.php">
@@ -31,7 +61,6 @@
             <input type="submit" value="PARTICIPER" >
         </form>
     </div>
-
-
+   -->
 
 {% endblock %}

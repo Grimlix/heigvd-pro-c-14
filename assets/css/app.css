@@ -5,12 +5,6 @@
  * Licensed under MIT
  * Based on Bootstrap
 */
-/*!
- * Bootstrap v4.4.1 (https://getbootstrap.com/)
- * Copyright 2011-2019 The Bootstrap Authors
- * Copyright 2011-2019 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- */
 
 :root {
     --blue: #007bff;
@@ -63,7 +57,7 @@ p
 
 body
 {
-    /* background-image: url('public/image/FondACCEUIL.png'); */
+    background-image: url('../image/FondACCEUIL.png');
     padding : 0;
     margin : 0;
 }
@@ -281,4 +275,124 @@ MENU DEROULANT
         top: 15px;
         right: 35px;
     }
+}
+
+.text-medium{
+    font-size: 2em!important;
+}
+
+.orange-text{
+    color: #f9af19!important;
+}
+
+.btn-orange {
+    border-color: #343a40;
+}
+
+.btn-orange:hover {
+    background-color: #FFE8C0;
+}
+
+.btn-orange-filled{
+    background-color: #f9af19!important;
+    color: #FFFFFF!important;
+}
+
+#page-content-wrapper{
+    position: absolute;
+    z-index: 10;
+    height: 100%;
+}
+
+#sidebar-wrapper{
+    position: absolute;
+    z-index: 100;
+}
+
+.centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+}
+
+.smiley-reponce{
+    position: absolute;
+    top: -70px;
+    left: 50%;
+    transform: translate(-35%, 0);
+}
+
+.form-styled .form-control, .form-styled .input-group-text, .form-styled-stand-alone .form-control, .form-styled-stand-alone .input-group-text{
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #ced4da;
+    border-left: 0px;
+    border-top: 0px;
+    border-right: 0px;
+    border-radius: 0px;
+}
+
+.form-styled .form-control:focus, .form-styled-stand-alone .form-control:focus{
+    color: initial;
+    background-color: #fff;
+    border-color: #FFE8C0;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem #FFE8C0;
+}
+
+::placeholder {
+    color:  #FFE8C0;
+    opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color:  #FFE8C0;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color:  #FFE8C0;
+}
+@media (max-width: 768px) {
+    nav .btn{
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+}
+
+.navbar{
+    padding-top: 1rem!important;
+}
+
+.error-txt{
+    color: #dc3545;
+    font-weight: bold;
+}
+
+.form-styled-stand-alone{
+    text-align: center;
+}
+
+.form-styled-stand-alone label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.form-styled-stand-alone input{
+    text-align: center;
+}
+
+.form-styled-stand-alone .input-group-text, .form-styled .input-group-text{
+    color: lightgray;
+}
+
+.orange-border{
+    border: 1px solid #f9af19!important;
 }
