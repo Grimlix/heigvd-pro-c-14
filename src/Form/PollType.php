@@ -13,14 +13,14 @@ class PollType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $option){
         $builder->add('id')
-                ->add('name')
-                ->add('passToken')
-                ->add('questions', CollectionType::class, [
-                    'entry_type' => questionType::class,
-                    'allow_delete' => true,
-                    'allow_add' => true,
-                    'by_reference' => false,
-                ]);
+            ->add('name')
+            ->add('passToken')
+            ->add('questions', CollectionType::class, [
+                'entry_type' => questionType::class,
+                'allow_delete' => true,
+                'allow_add' => true,
+                'by_reference' => false,
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

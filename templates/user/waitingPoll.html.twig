@@ -1,0 +1,10 @@
+<h1>Poll is not currently running. Wait on the administrator to run the poll</h1>
+
+ <script type="text/javascript">
+const eventSource = new EventSource('http://localhost:3000/.well-known/mercure?topic=' + encodeURIComponent('{{listenerUrl}}'));
+eventSource.onmessage = event => {
+    // Will be called every time an update is published by the server
+    console.log(JSON.parse(event.data));
+	location.reload();
+}
+  </script>
