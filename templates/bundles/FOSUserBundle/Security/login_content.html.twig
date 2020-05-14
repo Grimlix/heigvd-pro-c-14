@@ -1,0 +1,59 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="row">
+    <div id="col" class="col">
+        <div class="jumbotron bg-light centered shadow-lg text-center">
+            <div class="smiley-reponce">
+                <img src="{{asset('image/smileyREPONCE.png')}}" alt="PointRéponse" style="width: 85px; height: auto;">
+            </div>
+
+            <form class="text-center form-styled" action="{{ path("fos_user_security_check") }}" method="post">
+                {% if error %}
+                    <div class="error-txt">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    <hr class="my-4">
+                {% endif %}
+                {% if csrf_token %}
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                {% endif %}
+                <div class="row">
+                    <div class="col">
+                        <label class="sr-only" for="username">{{ 'security.login.username'|trans }}</label>
+                        <div class="input-group mb-4">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><span class="material-icons">account_circle</span></div>
+                            </div>
+                            <input type="text" id="username" name="_username" class="form-control text-center" id="username" placeholder="Nom d'utilisateur" value="{{ last_username }}" required="required">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label class="sr-only" for="password">{{ 'security.login.password'|trans }}</label>
+                        <div class="input-group mb-4">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><span class="material-icons">lock</span></div>
+                            </div>
+                            <input class="form-control text-center{% if error %} is-invalid{% endif %}" type="password" id="password" name="_password" required="required" autocomplete="current-password" placeholder="Mot de passe" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                            <label class="custom-control-label" for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row my-4">
+                    <div class="col text-center">
+                        <input class="btn btn-orange-filled rounded-pill text-uppercase px-5" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+                    </div>
+                </div>
+            </form>
+            {% if error %}
+                <p><a class="orange-text text-decoration-none text-reset" href="{{ path("fos_user_resetting_request") }}">[ mot de passe oublié ? ]</a></p>
+            {% endif %}
+        </div>
+    </div>
+</div>

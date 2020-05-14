@@ -1,0 +1,17 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+
+<div class="jumbotron jumbotron-fluid bg-light my-4">
+    <div class="container">
+        <h1 class="display-4">Compte</h1>
+        <hr class="my-4">
+        <div class="row">
+            <div class="col">
+                <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
+                <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+                <p><a class="btn btn-orange orange-text orange-border" href="{{ path('fos_user_change_password') }}"><span class="material-icons">edit</span> Modifier mon mot de passe</a></p>
+                <p><a class="btn btn-orange orange-text orange-border" href="{{ path('fos_user_profile_edit') }}"><span class="material-icons">edit</span>Editer le compte</a></p>
+            </div>
+        </div>
+    </div>
+</div>

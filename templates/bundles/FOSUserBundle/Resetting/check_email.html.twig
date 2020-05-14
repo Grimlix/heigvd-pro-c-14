@@ -1,0 +1,21 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+
+    <div class="row">
+        <div id="col" class="col">
+            <div class="jumbotron bg-light centered shadow-lg text-center">
+                <div class="smiley-reponce">
+                    <img src="{{asset('image/smileyREPONCE.png')}}" alt="PointRéponse" style="width: 85px; height: auto;">
+                </div>
+                <p>
+                    {{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime})|nl2br }}
+                </p>
+                <a class="btn btn-orange-filled rounded-pill text-uppercase px-5" href="{{ url('fos_user_security_login') }}">OK</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

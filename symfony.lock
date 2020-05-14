@@ -97,6 +97,9 @@
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
+    "mervick/material-design-icons": {
+        "version": "2.2.0"
+    },
     "nikic/php-parser": {
         "version": "v4.3.0"
     },
