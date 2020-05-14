@@ -18,7 +18,7 @@ app_question_new:
     controller: App\Controller\QuestionController::new
 
 app_admin_runPoll:
-    path: /home/runPoll/{poll_token}
+    path: /runPoll/{poll_token}
     controller: App\Controller\Admin_controller::run_poll
 
 app_admin_setNextQuestion:

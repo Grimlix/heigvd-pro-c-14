@@ -3,7 +3,6 @@ easy_admin:
         menu:
               - {entity: 'Poll'}
               - {entity: 'Question'}
-              - {entity: 'User'}
     entities:
         User:
           class: App\Entity\User
@@ -12,18 +11,24 @@ easy_admin:
               - 'username'
               - 'email'
               - 'lastLogin'
+          edit:
+            fields:
+              - { property: 'username'}
+              - { property: 'email'}
+              - { property: 'plainPassword'}
         Poll:
             class: App\Entity\Poll
             form:
               fields:
                 - 'name'
                 - 'passToken'
-                - { property: 'questions', type: 'collection', type_options: { entry_type: 'App\Entity\Question', allow_delete: true, allow_add: true, by_reference: false} }
             list:
               fields:
                 - 'name'
                 - 'passToken'
                 - 'questions'
+              actions:
+                - { name: 'Run', type: 'route' }
 
         Question:
             class: App\Entity\Question

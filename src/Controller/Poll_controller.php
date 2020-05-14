@@ -8,6 +8,8 @@ use App\Form\TokenType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
+
 
 class Poll_controller extends AbstractController
 {
@@ -25,18 +27,8 @@ class Poll_controller extends AbstractController
             // Search a matching poll
             $poll = $repository->findOneBy(['passToken' => $token]);
 
-            dump($token["token"]);
-
             // The poll exists
             if ($poll != null) {
-                #return $this->render('user/waitingPoll.html.twig');
-                #, [
-                 #   'pollID' => $poll->getId(),
-                  #  'pollName' => $poll->getName(),
-                   # 'token' => $poll->getPassToken(),
-                    #'userID' => $poll->getUser()->getId(),
-                #]);
-
                 return $this->redirectToRoute('app_user_getPoll', ['poll_token' => $token["token"]]);
             } else { // The poll doesn't exist
                 return $this->render('admin/poll_inexistent.html.twig');
@@ -45,4 +37,19 @@ class Poll_controller extends AbstractController
         // Default : acces to /poll redirects to /
         return $this->redirectToRoute('app_user_index');
     }
+
+    /**
+     * @Route(path = "/run", name = "Run")
+     * This function is with the Run button in the EasyAdmin page. It allow us to
+     * start a poll.
+     */
+    public function runAction(Request $request, EntityManagerInterface $em)
+    {
+        $repository = $em->getRepository(Poll::class);
+        $id = $request->query->get('id');
+        $poll = $repository->find($id);
+        $token = $poll->getPassToken();
+        return $this->redirectToRoute('app_admin_runPoll', ['poll_token' => $token]);
+    }
+
 }
