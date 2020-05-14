@@ -13,10 +13,12 @@ class TokenType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('token', TextType::class,
-                ['attr' =>
-                    ['placeholder' => 'Code de participation']])
-            ->add('Participer', SubmitType::class);
+            ->add('token', TextType::class, array(
+                'attr' => array(
+                    'placeholder' => 'Code de participation'
+                ),
+                'label' => false,
+            ));
     }
 
     public function configureOptions(OptionsResolver $resolver)

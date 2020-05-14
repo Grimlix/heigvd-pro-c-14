@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\TokenType;
 use App\Service\Poll_service;
 use App\Service\Poll_statistic_service;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\EasyAdminController;
@@ -82,7 +83,10 @@ class Admin_controller extends EasyAdminController
     // fonction page home ici pour l'instant
     public function home()
     {
-        return $this->render('home/home.html.twig');
+        $form = $this->createForm(TokenType::class);
+        return $this->render('home/home.html.twig', [
+            'tokenForm' => $form->createView()
+        ]);
     }
 
     // Override of the method in EasyAdminController. Allowing us to show only current User's database
@@ -104,11 +108,4 @@ class Admin_controller extends EasyAdminController
     protected function createNewPollEntity(){
         return new Poll($this->getUser());
     }
-
-
-    public function index(){
-        return $this->render('poll.html.twig');
-    }
-
-
 }

@@ -1,8 +1,10 @@
 easy_admin:
     design:
         menu:
-              - {entity: 'Poll'}
+              - {entity: 'Poll', default: true}
               - {entity: 'Question'}
+              - {label: 'Homepage', route: 'app_user_index', icon: 'home'}
+              - {label: 'Profile', url: '/profile', icon: 'user' }
     entities:
         User:
           class: App\Entity\User

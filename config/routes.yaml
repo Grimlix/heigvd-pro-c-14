@@ -1,25 +1,14 @@
-index:
+app_user_index:
     path: /
     controller: App\Controller\Admin_controller::home
 
-app_user_index:
-  path: /
-  controller: App\Controller\Token_controller::index
 app_user_poll:
   path: /poll
   controller: App\Controller\Poll_controller::validateToken
 
 app_admin_index:
-    path: /home
-    controller: App\Controller\Admin_controller::home
-
-app_question_new:
-    path: /home/question
-    controller: App\Controller\QuestionController::new
-
-app_admin_runPoll:
-    path: /runPoll/{poll_token}
-    controller: App\Controller\Admin_controller::run_poll
+  path: /home
+  controller: App\Controller\Admin_controller::home
 
 app_admin_setNextQuestion:
     path: /home/setNextQuestion/{poll_token}
@@ -28,6 +17,10 @@ app_admin_setNextQuestion:
 app_admin_setLastQuestion:
     path: /home/setLastQuestion/{poll_token}
     controller: App\Controller\Admin_controller::set_last_question
+
+app_admin_runPoll:
+  path: /runPoll/{poll_token}
+  controller: App\Controller\Admin_controller::run_poll
 
 app_user_getPoll:
     path: /getPoll/{poll_token}
