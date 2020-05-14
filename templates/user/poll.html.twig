@@ -1,3 +1,6 @@
+{% extends 'base.html.twig' %}
+
+{%  block body %}
 <form action="{{formUrl}}" target="result" method="get">
 
 
@@ -20,3 +23,4 @@ eventSource.onmessage = event => {
 	location.reload();
 }
   </script>
+{% endblock %}

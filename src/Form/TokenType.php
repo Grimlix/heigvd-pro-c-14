@@ -7,6 +7,9 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
+use App\Validator\Tocken;
+
 
 class TokenType extends AbstractType
 {
@@ -18,6 +21,10 @@ class TokenType extends AbstractType
                     'placeholder' => 'Code de participation'
                 ),
                 'label' => false,
+                'constraints' => [
+                        new Length(['min' => 5, 'max' => 12 ]),
+                        new Tocken(),
+                    ],
             ));
     }
 
