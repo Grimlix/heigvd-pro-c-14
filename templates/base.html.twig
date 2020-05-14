@@ -41,6 +41,7 @@
             <div class="list-group list-group-flush text-uppercase orange-text">
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                     <a class="border-0 list-group-item list-group-item-action bg-light" href="{{ path('fos_user_profile_show') }}"><span class="material-icons">person_outline</span> Mon compte</a>
+                    <a class="border-0 list-group-item list-group-item-action bg-light" href="/admin"><span class="material-icons">security</span> Espace Admin</a>
                     <a class="border-0 list-group-item list-group-item-action bg-light" href="{{ path('fos_user_security_logout') }}"><span class="material-icons">clear</span> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
                 {% else %}
                     <a class="border-0 list-group-item list-group-item-action bg-light" href="{{ url('fos_user_security_login') }}"><span class="material-icons">person_outline</span> se connecter</a>
