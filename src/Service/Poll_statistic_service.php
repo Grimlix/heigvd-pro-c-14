@@ -22,40 +22,45 @@ class Poll_statistic_service
         $this->bus = $bus;
     }
 
-    public function get_answered_poll_count()
+    public function get_answered_poll_count($answerID)
     {
         $poll_statistic = $this->entity_manager
             ->getRepository(PollStatistic::class)
             ->find(1);
         if (!$poll_statistic) {
-            $this->create_poll_statistic();
+          $this->create_answer_statistic($answerID);
             $poll_statistic = $this->entity_manager
                 ->getRepository(PollStatistic::class)
                 ->find(1);
         }
         return $poll_statistic->getCount();
     }
-    public function increment_poll_count()
+    public function increment_answer_count($answerID)
     {
         $poll_statistic = $this->entity_manager
             ->getRepository(PollStatistic::class)
-            ->find(1);
+            ->findOneBy(['answer_id' => $answerID]);
+
         if (!$poll_statistic) {
-            $this->create_poll_statistic();
+            $this->create_answer_statistic($answerID);
             $poll_statistic = $this->entity_manager
                 ->getRepository(PollStatistic::class)
-                ->find(1);
+                ->findOneBy(['answer_id' => $answerID]);
         }
         $poll_statistic->setCount($poll_statistic->getCount() + 1);
         $this->entity_manager->flush();
 
     }
-    private function create_poll_statistic(){
-        $poll_statistic = new PollStatistic();
+
+    private function create_answer_statistic($answerID){
+        $poll_statistic = new PollStatistic($answerID);
         $poll_statistic->setCount(0);
         $this->entity_manager->persist($poll_statistic);
         $this->entity_manager->flush();
     }
+
+
+
     public function update_poll_statistic($poll_token){
         $update = new Update(
             $_ENV['SYMFONY_WEBSITE_ROOT_URL'] . '/home/runPoll/' . $poll_token,

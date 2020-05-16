@@ -6,7 +6,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Doctrine\ORM\Mapping\UniqueConstraint\Length;
 use Doctrine\ORM\Mapping\UniqueConstraint;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  *
@@ -36,8 +39,16 @@ class Poll
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
+     *
+     * @Assert\Length(
+     *     min = 5, max = 12,
+     *     minMessage = "Your token  must be at least {{ limit }} characters long",
+     *     maxMessage = "Your token cannot be longer than {{ limit }} characters long",
+     *     allowEmptyString = false
+     *     )
      */
     private $passToken;
+
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Question", mappedBy="poll", orphanRemoval=true)
      */

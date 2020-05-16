@@ -29,25 +29,56 @@ class Admin_controller extends EasyAdminController
 
     public function run_poll($poll_token){
 
-        $question = $this->poll_service->get_current_poll_question($poll_token);
+        $currentQuestion = $this->poll_service->get_current_poll_question($poll_token);
 
-        if(!$question){
+
+        if(!$currentQuestion){
+
+            $questions = $this->poll_service->get_current_poll_questions($poll_token);
+
+
+            $answers=array();
+            foreach($questions as $q){
+                $temp = $this->poll_service->get_current_question_answers($q);
+                array_push($answers,$temp);
+            }
+
+
+
+            $statistics=array();
+            foreach($answers as $answer){
+                $temp = $this->poll_service->get_answer_stats($answer);
+                array_push($statistics,$temp);
+            }
+
+            if($this->poll_service->isPollFinished($poll_token)){
+                return $this->render('admin/pollFinished.html.twig', [
+                    'question' => 'no question currently running',
+                    'nextQuestionUrl' =>  $_SERVER['SYMFONY_WEBSITE_ROOT_URL'] . '/home/setNextQuestion/' . $poll_token,
+                    'lastQuestionUrl' => $_SERVER['SYMFONY_WEBSITE_ROOT_URL'] . '/home/setLastQuestion/' . $poll_token,
+                    'listenerUrl' => $_ENV['SYMFONY_WEBSITE_ROOT_URL'] . '/home/runPoll/' . $poll_token,
+                    'answers' => $answers,
+                    'questions' => $questions,
+                    'statistics' => $statistics
+                ]);
+            }
 
             return $this->render('admin/runningPoll.html.twig', [
                 'question' => 'no question currently running',
                 'nextQuestionUrl' =>  $_SERVER['SYMFONY_WEBSITE_ROOT_URL'] . '/home/setNextQuestion/' . $poll_token,
                 'lastQuestionUrl' => $_SERVER['SYMFONY_WEBSITE_ROOT_URL'] . '/home/setLastQuestion/' . $poll_token,
-                'nbQuestionAnswered' => $this->poll_statistic_service->get_answered_poll_count(),
+//                'nbQuestionAnswered' => $this->poll_statistic_service->get_answered_poll_count(),
                 'listenerUrl' => $_ENV['SYMFONY_WEBSITE_ROOT_URL'] . '/home/runPoll/' . $poll_token
             ]);
+
 
         }
         else{
             return $this->render('admin/runningPoll.html.twig', [
-                'question' => $question,
+                'question' => $currentQuestion,
                 'nextQuestionUrl' =>  $_SERVER['SYMFONY_WEBSITE_ROOT_URL'] . '/home/setNextQuestion/' . $poll_token,
                 'lastQuestionUrl' => $_SERVER['SYMFONY_WEBSITE_ROOT_URL'] . '/home/setLastQuestion/' . $poll_token,
-                'nbQuestionAnswered' => $this->poll_statistic_service->get_answered_poll_count(),
+//                'nbQuestionAnswered' => $this->poll_statistic_service->get_answered_poll_count(),
                 'listenerUrl' => $_ENV['SYMFONY_WEBSITE_ROOT_URL'] . '/home/runPoll/' . $poll_token
             ]);
         }

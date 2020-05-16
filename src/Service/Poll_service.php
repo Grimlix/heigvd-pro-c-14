@@ -4,12 +4,14 @@
 namespace App\Service;
 
 use App\Entity\Poll;
+use App\Entity\PollStatistic;
 use App\Entity\Question;
 use App\Entity\Answer;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Mercure\PublisherInterface;
 use Symfony\Component\Mercure\Update;
 use Symfony\Component\Messenger\MessageBusInterface;
+use Webmozart\Assert\Assert;
 
 class Poll_service
 {
@@ -48,6 +50,42 @@ class Poll_service
             }
         }
     }
+
+    public function get_current_question_answers($questionID){
+        $answers = $this->entity_manager
+            ->getRepository(Answer::class)
+            ->findBy([
+                'question' => $questionID
+            ]);
+
+        return $answers;
+
+    }
+
+
+    public function get_current_poll_questions($poll_token)
+    {
+        $poll = $this->entity_manager
+            ->getRepository(Poll::class)
+            ->findOneBy(['passToken' => $poll_token]);
+        if (!$poll) {
+            return null;
+        }
+        else {
+            $questions = $this->entity_manager
+                ->getRepository(Question::class)
+                ->findBy([
+                    'poll' => $poll->getId(),
+                ]);
+            if(!$questions){
+                return null;
+            }
+            else{
+                return $questions;
+            }
+        }
+    }
+
     public function get_current_poll_answers($question_id)
     {
         return $this->entity_manager
@@ -66,6 +104,12 @@ class Poll_service
             json_encode(['action' => 'reload'])
         );
         $this->bus->dispatch($update_admin);
+    }
+
+    public function get_answer_stats($answerID){
+        return $this->entity_manager
+            ->getRepository(PollStatistic::class)
+            ->findBy(['answer_id' => $answerID]);
     }
 
     public function set_next_question($poll_token){
@@ -110,20 +154,29 @@ class Poll_service
         }
     }
 
-
-
-    /*
-    public function delete_poll($id): Response {
-
-        $product = $this->getDoctrine()
+    public function getPoll($poll_token){
+        $poll = $this->entity_manager
             ->getRepository(Poll::class)
-            ->find($id);
-
-        $this->entity_manager->remove($product->getId());
-        $this->entity_manager->flush();
-
-        return new Response('Deleted product with id ' .$this->getId());
+            ->findOneBy(['passToken' => $poll_token]);
+        return $poll;
     }
-    */
 
+
+    public function isPollFinished($poll_token){
+        $questions1 = $this->entity_manager
+            ->getRepository(Question::class)
+            ->findBy([
+                'poll' => $this->entity_manager->getRepository(Poll::class)->findOneBy(['passToken' => $poll_token])->getId(),
+                'open' => false,
+                'close' => false
+            ]);
+
+        $returnVal = true;
+
+        if($questions1){
+            $returnVal = false;
+        }
+
+        return $returnVal;
+    }
 }
