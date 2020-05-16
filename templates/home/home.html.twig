@@ -20,12 +20,15 @@
                             {% endif %}
                             <label class="sr-only" for="participationCode">Code de participation</label>
                             <div class="input-group mb-4">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text"><span class="material-icons">vpn_key</span></div>
-                                </div>
                                 {% if tokenForm.token.vars.valid %}
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><span class="material-icons">vpn_key</span></div>
+                                    </div>
                                     {{ form_widget(tokenForm.token, { 'attr': {'class': 'form-control text-center'} }) }}
                                 {% else %}
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text border-danger"><span class="material-icons">vpn_key</span></div>
+                                    </div>
                                     {{ form_widget(tokenForm.token, { 'attr': {'class': 'form-control text-center is-invalid'} }) }}
                                 {% endif %}
                             </div>

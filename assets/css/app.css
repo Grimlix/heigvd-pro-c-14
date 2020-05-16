@@ -45,6 +45,10 @@ html {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+html,body {
+    height: 100%;
+}
+
 h1
 {
     color: #F8AE15;
@@ -289,7 +293,7 @@ MENU DEROULANT
     border-color: #343a40;
 }
 
-.btn-orange:hover {
+.btn-orange:hover, .btn-outline-orange:hover {
     background-color: #FFE8C0;
 }
 
@@ -393,6 +397,30 @@ MENU DEROULANT
     color: lightgray;
 }
 
-.orange-border{
+.orange-border, .btn-outline-orange{
     border: 1px solid #f9af19!important;
+}
+
+.btn-outline-orange{
+    color: #f9af19!important;
+}
+
+.bg-orange-light{
+    background-color: #f8eedf;
+}
+
+input[type="radio"]:checked+label {
+    color: #FFFFFF!important;
+    font-weight: bold;
+    background-color: #f9af19;
+}
+
+.navbar{
+    z-index: 10;
+}
+
+.question-content {
+    height: 100%;
+    overflow: auto;
+    z-index: 0;
 }
