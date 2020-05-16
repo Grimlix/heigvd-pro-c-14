@@ -13,7 +13,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class Poll_controller extends AbstractController
 {
-    public function validateToken(Request $request, EntityManagerInterface $em)
+
+    public function validateToken(Request $request)
     {
         $form = $this->createForm(TokenType::class);
 
@@ -21,22 +22,15 @@ class Poll_controller extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Get access to Poll entity
-            $repository = $em->getRepository(Poll::class);
             $token = $form->getData();
-            // Search a matching poll
-            $poll = $repository->findOneBy(['passToken' => $token]);
-
-            // The poll exists
-            if ($poll != null) {
-                return $this->redirectToRoute('app_user_getPoll', ['poll_token' => $token["token"]]);
-            } else { // The poll doesn't exist
-                return $this->render('admin/poll_inexistent.html.twig');
-            }
+            return $this->redirectToRoute('app_user_getPoll', ['poll_token' => $token["token"]]);
         }
-        // Default : acces to /poll redirects to /
-        return $this->redirectToRoute('app_user_index');
+        // Default : renders home page with the form errors
+        return $this->render('home/home.html.twig', [
+            'tokenForm' => $form->createView(),
+        ]);
     }
+
 
     /**
      * @Route(path = "/run", name = "Run")

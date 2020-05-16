@@ -11,56 +11,95 @@
 
             <div class="row">
                 <div class="col">
-                    <div class="error-txt">
-                        {{ form.email.vars.errors }}
-                    </div>
+                    {% if not form.email.vars.valid %}
+                        <p class="error-txt">
+                            {% for error in form.email.vars.errors %}
+                                {{ error.message }}<br />
+                            {% endfor %}
+                        </p>
+                    {% endif %}
                     <div class="input-group mb-4">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">@</div>
-                        </div>
-                        {{ form_widget(form.email, {'attr': {'placeholder': 'email', 'class':'form-control'}}) }}
+                        {% if form.email.vars.valid %}
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">@</div>
+                            </div>
+                            {{ form_widget(form.email, {'attr': {'placeholder': 'email', 'class':'form-control'}}) }}
+                        {% else %}
+                            <div class="input-group-prepend">
+                                <div class="input-group-text border-danger">@</div>
+                            </div>
+                            {{ form_widget(form.email, {'attr': {'placeholder': 'email', 'class':'form-control  is-invalid'}}) }}
+                        {% endif %}
                     </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col">
-                    <div class="error-txt">
-                        {{ form.username.vars.errors }}
-                    </div>
+
+                    {% if not form.username.vars.valid %}
+                        <p class="error-txt">
+                            {% for error in form.username.vars.errors %}
+                                {{ error.message }}<br />
+                            {% endfor %}
+                        </p>
+                    {% endif %}
                     <div class="input-group mb-4">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text"><span class="material-icons">person</span></div>
-                        </div>
-                        {{ form_widget(form.username, {'attr': {'placeholder': 'nom d\'utilisateur', 'class':'form-control'}}) }}
+                        {% if form.username.vars.valid %}
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><span class="material-icons">person</span></div>
+                            </div>
+                            {{ form_widget(form.username, {'attr': {'placeholder': 'nom d\'utilisateur', 'class':'form-control'}}) }}
+                        {% else %}
+                            <div class="input-group-prepend">
+                                <div class="input-group-text border-danger"><span class="material-icons">person</span></div>
+                            </div>
+                            {{ form_widget(form.username, {'attr': {'placeholder': 'nom d\'utilisateur', 'class':'form-control is-invalid'}}) }}
+                        {% endif %}
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <div class="error-txt">
-                        {{ form.plainPassword.first.vars.errors }}
-                    </div>
+                    {% if not form.plainPassword.first.vars.valid %}
+                        <p class="error-txt">
+                            {% for error in form.plainPassword.first.vars.errors %}
+                                {{ error.message }}<br />
+                            {% endfor %}
+                        </p>
+                    {% endif %}
                     <div class="input-group mb-4">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text"><span class="material-icons">lock</span></div>
-                        </div>
-                        {{ form_widget(form.plainPassword.first, {'attr': {'placeholder': 'mot de passe', 'class':'form-control'}}) }}
+                        {% if form.plainPassword.first.vars.valid %}
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><span class="material-icons">lock</span></div>
+                            </div>
+                            {{ form_widget(form.plainPassword.first, {'attr': {'placeholder': 'mot de passe', 'class':'form-control'}}) }}
+                        {% else %}
+                            <div class="input-group-prepend">
+                                <div class="input-group-text border-danger"><span class="material-icons">lock</span></div>
+                            </div>
+                            {{ form_widget(form.plainPassword.first, {'attr': {'placeholder': 'mot de passe', 'class':'form-control is-invalid'}}) }}
+                        {% endif %}
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                     <div class="input-group mb-4">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text"><span class="material-icons">lock</span></div>
-                        </div>
-                        {{ form_widget(form.plainPassword.second, {'attr': {'placeholder': 'mot de passe', 'class':'form-control'}}) }}
+                        {% if form.plainPassword.first.vars.valid %}
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><span class="material-icons">lock</span></div>
+                            </div>
+                            {{ form_widget(form.plainPassword.second, {'attr': {'placeholder': 'mot de passe', 'class':'form-control'}}) }}
+                        {% else %}
+                            <div class="input-group-prepend">
+                                <div class="input-group-text border-danger"><span class="material-icons">lock</span></div>
+                            </div>
+                            {{ form_widget(form.plainPassword.second, {'attr': {'placeholder': 'mot de passe', 'class':'form-control is-invalid'}}) }}
+                        {% endif %}
                     </div>
                 </div>
             </div>
-
-
             {{ form_widget(form) }}
             <div>
                 <input  class="btn btn-orange-filled rounded-pill text-uppercase px-5" type="submit" value="{{ 'registration.submit'|trans }}" />

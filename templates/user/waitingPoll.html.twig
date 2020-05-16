@@ -1,4 +1,25 @@
-<h1>Poll is not currently running. Wait on the administrator to run the poll</h1>
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="row">
+        <div id="col" class="col">
+            <div class="jumbotron bg-light centered shadow-lg text-center">
+                <div class="smiley-reponce">
+                    <img src="{{asset('image/smileyREPONCE.png')}}" alt="PointRéponse" style="width: 85px; height: auto;">
+                </div>
+                <h5 class="orange-text">Poll is not currently running.</h5>
+                <hr class="my-4">
+                <p>Waiting for the administrator to start the poll...<p>
+                <div class="spinner-grow orange-text" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <br />
+                <a href="{{ url('app_user_index') }}" class="btn btn-sm btn-outline-orange pull-left"><span class="material-icons">arrow_back</span> go back </a>
+            </div>
+        </div>
+    </div>
+
+
+
 
  <script type="text/javascript">
 const eventSource = new EventSource('http://localhost:3000/.well-known/mercure?topic=' + encodeURIComponent('{{listenerUrl}}'));
@@ -8,3 +29,4 @@ eventSource.onmessage = event => {
 	location.reload();
 }
   </script>
+{% endblock %}
