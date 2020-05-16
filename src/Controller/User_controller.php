@@ -57,7 +57,7 @@ class User_controller extends EasyAdminController{
     public function increment_poll_statistic($poll_token, Request $request){
         $answerID = $request->get('answer');
 
-        $this->poll_statistic_service->increment_poll_count($answerID);
+        $this->poll_statistic_service->increment_answer_count($answerID);
         $this->poll_statistic_service->update_poll_statistic($poll_token);
         return new Response('number of questions answered incremented');
     }

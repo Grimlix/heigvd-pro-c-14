@@ -4,6 +4,7 @@
 namespace App\Service;
 
 
+use App\Entity\Answer;
 use App\Entity\PollStatistic;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Mercure\PublisherInterface;
@@ -35,6 +36,7 @@ class Poll_statistic_service
         }
         return $poll_statistic->getCount();
     }
+
     public function increment_answer_count($answerID)
     {
         $poll_statistic = $this->entity_manager
@@ -50,6 +52,16 @@ class Poll_statistic_service
         $poll_statistic->setCount($poll_statistic->getCount() + 1);
         $this->entity_manager->flush();
 
+    }
+
+
+    public function create_question_statistics($question){
+        $ans = $this->entity_manager
+            ->getRepository(Answer::class )
+            ->findBy(['question' => $question]);
+        foreach($ans as $a){
+            $this->create_answer_statistic($a);
+        }
     }
 
     private function create_answer_statistic($answerID){

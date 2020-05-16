@@ -41,6 +41,11 @@ class Answer
         return $this->answerText;
     }
 
+    public function getAnswerText(): ?string
+    {
+        return $this->answerText;
+    }
+
     public function setAnswerText(string $answerText): self
     {
         $this->answerText = $answerText;

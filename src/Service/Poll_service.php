@@ -112,6 +112,7 @@ class Poll_service
             ->findBy(['answer_id' => $answerID]);
     }
 
+
     public function set_next_question($poll_token){
         $current_question =
             $this->entity_manager
@@ -134,6 +135,7 @@ class Poll_service
                     'close' => false
                 ]);
         if($next_question){
+//            $this->create_question_statistics($next_question);
             $next_question->setOpen(1);
             $this->entity_manager->flush();
         }
