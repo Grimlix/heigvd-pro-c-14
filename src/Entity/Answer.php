@@ -36,6 +36,11 @@ class Answer
         return $this->id;
     }
 
+    public function getAnswer_Text(): ?string
+    {
+        return $this->answerText;
+    }
+
     public function getAnswerText(): ?string
     {
         return $this->answerText;

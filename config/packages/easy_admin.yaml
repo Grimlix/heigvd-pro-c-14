@@ -44,7 +44,11 @@ easy_admin:
                 - 'text'
                 - 'poll'
                 - 'answers'
-
+            edit:
+              fields:
+                - { property: 'text'}
+                - { property: 'answers'}
+                - { property: '-poll'}
         Answer:
             class: App\Entity\Answer
 

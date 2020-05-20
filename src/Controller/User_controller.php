@@ -5,6 +5,9 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Service\Poll_statistic_service;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\EasyAdminController;
+
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Mercure\PublisherInterface;
@@ -51,8 +54,10 @@ class User_controller extends EasyAdminController{
             'listenerUrl' => $_ENV['SYMFONY_WEBSITE_ROOT_URL'] . '/getPoll/' . $poll_token]);
 
     }
-    public function increment_poll_statistic($poll_token){
-        $this->poll_statistic_service->increment_poll_count();
+    public function increment_poll_statistic($poll_token, Request $request){
+        $answerID = $request->get('answer');
+
+        $this->poll_statistic_service->increment_answer_count($answerID);
         $this->poll_statistic_service->update_poll_statistic($poll_token);
         return new Response('number of questions answered incremented');
     }

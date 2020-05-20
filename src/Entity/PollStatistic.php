@@ -21,8 +21,31 @@ class PollStatistic
      */
     private $count;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Answer", inversedBy="poll_statistic")
+     * @ORM\Column(type="integer")
+     */
+    private $answer_id;
 
+    /**
+     * @return mixed
+     */
+    public function getanswer_id()
+    {
+        return $this->answer_id;
+    }
 
+    /**
+     * @param mixed $answer_id
+     */
+    public function setAnswerId($answer_id): void
+    {
+        $this->answer_id = $answer_id;
+    }
+
+    public function __construct($answerID){
+        $this->answer_id = $answerID;
+    }
 
     public function getId(): ?int
     {
