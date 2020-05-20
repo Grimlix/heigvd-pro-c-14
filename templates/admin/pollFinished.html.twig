@@ -6,10 +6,8 @@
             <p>{{ question.text }}</p>
             <!--1er [0] réponses relatives a la quesiton 1 -->
             <!--2eme [0] bouton de réponse a question 1 -->
-
             {% for answer in answers %}
                 {% for ans in answer %}
-
                     {% if ans.question.id == question.id %}
                      {{ ans.answerText }} {% set nbAns = 0 %}
                         {% for statistic in statistics %}

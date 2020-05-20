@@ -14,8 +14,26 @@
                 </div>
                 <div class="col-12 align-self-end">
                     <hr class="mt-4 mb-0">
-{#                    <p>Number poll question answered: <b>{{nbQuestionAnswered}}</b></p>#}
+                    <div>
+                        {% if statsOn == true %}
+                            {% for answer in currentAnswers %}
+                                {% if answer.question.id == question.id %}
+                                    {{ answer.answerText }} {% set nbAns = 0 %}
+                                    {% for statistic in currentStatistics %}
+                                        {% for stat in statistic %}
+                                            {% if answer.id == stat.answer_id %}
+                                                {% set nbAns =  stat.count  %}
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endfor %}
+                                    {{ nbAns }}
+                                    <br />
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
                 </div>
+
             </div>
             <div class="row m-2 p-2 py-4 bg-light">
                 <div class="col">
@@ -23,9 +41,7 @@
                         <input type="submit" value="Next question" />
                     </form>
 
-{#                    <form action="{{lastQuestionUrl}}" target="result" method="get">#}
-{#                        <input type="submit" value="Last question" />#}
-{#                    </form>#}
+
 
                 </div>
             </div>

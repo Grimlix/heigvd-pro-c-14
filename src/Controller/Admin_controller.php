@@ -63,23 +63,40 @@ class Admin_controller extends EasyAdminController
                 ]);
             }
 
+
+
+
+
             return $this->render('admin/runningPoll.html.twig', [
                 'question' => 'no question currently running',
                 'nextQuestionUrl' =>  $_SERVER['SYMFONY_WEBSITE_ROOT_URL'] . '/home/setNextQuestion/' . $poll_token,
                 'lastQuestionUrl' => $_SERVER['SYMFONY_WEBSITE_ROOT_URL'] . '/home/setLastQuestion/' . $poll_token,
 //                'nbQuestionAnswered' => $this->poll_statistic_service->get_answered_poll_count(),
-                'listenerUrl' => $_ENV['SYMFONY_WEBSITE_ROOT_URL'] . '/home/runPoll/' . $poll_token
+                'listenerUrl' => $_ENV['SYMFONY_WEBSITE_ROOT_URL'] . '/home/runPoll/' . $poll_token,
+                'statsOn' => false
             ]);
 
 
         }
         else{
+
+
+            $currentQuestionAnswers = $this->poll_service->get_current_question_answers($currentQuestion);
+            $currentQuestionStatistics = array();
+            foreach($currentQuestionAnswers as $answer) {
+                $temp = $this->poll_service->get_answer_stats($answer);
+                array_push($currentQuestionStatistics, $temp);
+            }
+
+
             return $this->render('admin/runningPoll.html.twig', [
                 'question' => $currentQuestion,
                 'nextQuestionUrl' =>  $_SERVER['SYMFONY_WEBSITE_ROOT_URL'] . '/home/setNextQuestion/' . $poll_token,
                 'lastQuestionUrl' => $_SERVER['SYMFONY_WEBSITE_ROOT_URL'] . '/home/setLastQuestion/' . $poll_token,
-//                'nbQuestionAnswered' => $this->poll_statistic_service->get_answered_poll_count(),
-                'listenerUrl' => $_ENV['SYMFONY_WEBSITE_ROOT_URL'] . '/home/runPoll/' . $poll_token
+                'listenerUrl' => $_ENV['SYMFONY_WEBSITE_ROOT_URL'] . '/home/runPoll/' . $poll_token,
+                'currentAnswers' => $currentQuestionAnswers,
+                'currentStatistics' => $currentQuestionStatistics,
+                'statsOn' => true
             ]);
         }
     }
