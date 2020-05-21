@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Service;
 
 use App\Entity\Poll;
@@ -11,7 +10,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Mercure\PublisherInterface;
 use Symfony\Component\Mercure\Update;
 use Symfony\Component\Messenger\MessageBusInterface;
-use Webmozart\Assert\Assert;
 
 class Poll_service
 {
@@ -19,12 +17,12 @@ class Poll_service
     private $publisher;
     private $bus;
 
-    public function __construct(EntityManagerInterface $entity_manager, PublisherInterface $publisher, MessageBusInterface $bus){
+    public function __construct(EntityManagerInterface $entity_manager, PublisherInterface $publisher, MessageBusInterface $bus)
+    {
         $this->entity_manager = $entity_manager;
         $this->publisher = $publisher;
         $this->bus = $bus;
     }
-
 
     public function get_current_poll_question($poll_token)
     {
@@ -33,8 +31,7 @@ class Poll_service
             ->findOneBy(['passToken' => $poll_token]);
         if (!$poll) {
             return null;
-        }
-        else {
+        } else {
             $question = $this->entity_manager
                 ->getRepository(Question::class)
                 ->findOneBy([
@@ -42,26 +39,23 @@ class Poll_service
                     'open' => true,
                     'close' => false
                 ]);
-            if(!$question){
+            if (!$question) {
                 return null;
-            }
-            else{
+            } else {
                 return $question;
             }
         }
     }
 
-    public function get_current_question_answers($questionID){
+    public function get_current_question_answers($questionID)
+    {
         $answers = $this->entity_manager
             ->getRepository(Answer::class)
             ->findBy([
                 'question' => $questionID
             ]);
-
         return $answers;
-
     }
-
 
     public function get_current_poll_questions($poll_token)
     {
@@ -70,17 +64,15 @@ class Poll_service
             ->findOneBy(['passToken' => $poll_token]);
         if (!$poll) {
             return null;
-        }
-        else {
+        } else {
             $questions = $this->entity_manager
                 ->getRepository(Question::class)
                 ->findBy([
                     'poll' => $poll->getId(),
                 ]);
-            if(!$questions){
+            if (!$questions) {
                 return null;
-            }
-            else{
+            } else {
                 return $questions;
             }
         }
@@ -91,9 +83,10 @@ class Poll_service
         return $this->entity_manager
             ->getRepository(Answer::class)
             ->findBy(['question' => $question_id]);
-
     }
-    public function update_poll_clients($poll_token){
+
+    public function update_poll_clients($poll_token)
+    {
         $update = new Update(
             $_ENV['SYMFONY_WEBSITE_ROOT_URL'] . '/getPoll/' . $poll_token,
             json_encode(['action' => 'reload'])
@@ -106,14 +99,15 @@ class Poll_service
         $this->bus->dispatch($update_admin);
     }
 
-    public function get_answer_stats($answerID){
+    public function get_answer_stats($answerID)
+    {
         return $this->entity_manager
             ->getRepository(PollStatistic::class)
             ->findBy(['answer_id' => $answerID]);
     }
 
-
-    public function set_next_question($poll_token){
+    public function set_next_question($poll_token)
+    {
         $current_question =
             $this->entity_manager
                 ->getRepository(Question::class)
@@ -122,7 +116,7 @@ class Poll_service
                     'open' => true,
                     'close' => false
                 ]);
-        if($current_question){
+        if ($current_question) {
             $current_question->setClose(1);
             $this->entity_manager->flush();
         }
@@ -134,14 +128,15 @@ class Poll_service
                     'open' => false,
                     'close' => false
                 ]);
-        if($next_question){
+        if ($next_question) {
 //            $this->create_question_statistics($next_question);
             $next_question->setOpen(1);
             $this->entity_manager->flush();
         }
     }
 
-    public function set_last_question($poll_token){
+    public function set_last_question($poll_token)
+    {
         $next_question =
             $this->entity_manager
                 ->getRepository(Question::class)
@@ -150,21 +145,22 @@ class Poll_service
                     'open' => true,
                     'close' => true
                 ]);
-        if($next_question){
+        if ($next_question) {
             $next_question->setClose(0);
             $this->entity_manager->flush();
         }
     }
 
-    public function getPoll($poll_token){
+    public function getPoll($poll_token)
+    {
         $poll = $this->entity_manager
             ->getRepository(Poll::class)
             ->findOneBy(['passToken' => $poll_token]);
         return $poll;
     }
 
-
-    public function isPollFinished($poll_token){
+    public function isPollFinished($poll_token)
+    {
         $questions1 = $this->entity_manager
             ->getRepository(Question::class)
             ->findBy([
@@ -175,10 +171,9 @@ class Poll_service
 
         $returnVal = true;
 
-        if($questions1){
+        if ($questions1) {
             $returnVal = false;
         }
-
         return $returnVal;
     }
 }

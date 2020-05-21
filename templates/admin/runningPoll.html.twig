@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{%  block body %}
+{% block body %}
 
     <div class="row flex-grow-1">
         <div class="container bg-orange-light shadow question-content">
@@ -22,12 +22,12 @@
                                     {% for statistic in currentStatistics %}
                                         {% for stat in statistic %}
                                             {% if answer.id == stat.answer_id %}
-                                                {% set nbAns =  stat.count  %}
+                                                {% set nbAns =  stat.count %}
                                             {% endif %}
                                         {% endfor %}
                                     {% endfor %}
                                     {{ nbAns }}
-                                    <br />
+                                    <br/>
                                 {% endif %}
                             {% endfor %}
                         {% endif %}
@@ -37,25 +37,20 @@
             </div>
             <div class="row m-2 p-2 py-4 bg-light">
                 <div class="col">
-                    <form action="{{nextQuestionUrl}}" target="result" method="get">
-                        <input type="submit" value="Next question" />
+                    <form action="{{ nextQuestionUrl }}" method="get">
+                        <input type="submit" value="Next question"/>
                     </form>
-
-
-
                 </div>
             </div>
         </div>
     </div>
 
-
-
- <script type="text/javascript">
-const eventSource = new EventSource('http://localhost:3000/.well-known/mercure?topic=' + encodeURIComponent('{{listenerUrl}}'));
-eventSource.onmessage = event => {
-    // Will be called every time an update is published by the server
-    console.log(JSON.parse(event.data));
-	location.reload();
-}
-  </script>
+    <script type="text/javascript">
+        const eventSource = new EventSource('http://localhost:3000/.well-known/mercure?topic=' + encodeURIComponent('{{ listenerUrl }}'));
+        eventSource.onmessage = event => {
+            // Will be called every time an update is published by the server
+            console.log(JSON.parse(event.data));
+            location.reload();
+        }
+    </script>
 {% endblock %}
