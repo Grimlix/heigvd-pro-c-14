@@ -6,17 +6,14 @@ use App\Entity\User;
 use App\Service\Poll_statistic_service;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\EasyAdminController;
 
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Mercure\PublisherInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Service\Poll_service;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class User_controller extends EasyAdminController{
+class User_controller extends EasyAdminController
+{
     private $passwordEncoder;
     private $poll_service;
     private $publisher;
@@ -31,18 +28,18 @@ class User_controller extends EasyAdminController{
     }
 
     //get current state of the poll i.e. current question
-    public function get_poll($poll_token){
-
+    public function get_poll($poll_token, Request $request)
+    {
         $question = $this->poll_service->get_current_poll_question($poll_token);
 
-        if(!$question){
+        if (!$question) {
             //poll is not currently running (no open question)
             return $this->render('user/waitingPoll.html.twig', [
                 'listenerUrl' => $_ENV['SYMFONY_WEBSITE_ROOT_URL'] . '/home/runPoll/' . $poll_token
             ]);
         }
         $answers = $this->poll_service->get_current_poll_answers($question->getId());
-        if(!$answers){
+        if (!$answers) {
             //question without any answer: means the poll is not correctly defined
             return new Response('Error, question without any answer');
         }
@@ -50,16 +47,18 @@ class User_controller extends EasyAdminController{
         return $this->render('user/poll.html.twig', [
             'question' => $question,
             'answers' => $answers,
+            'isSubmitted' => $request->query->get('isSubmitted'),
             'formUrl' => $_SERVER['SYMFONY_WEBSITE_ROOT_URL'] . '/incrementPollStatistic/' . $poll_token,
             'listenerUrl' => $_ENV['SYMFONY_WEBSITE_ROOT_URL'] . '/getPoll/' . $poll_token]);
-
     }
-    public function increment_poll_statistic($poll_token, Request $request){
+
+    public function increment_poll_statistic($poll_token, Request $request)
+    {
         $answerID = $request->get('answer');
 
         $this->poll_statistic_service->increment_answer_count($answerID);
         $this->poll_statistic_service->update_poll_statistic($poll_token);
-        return new Response('number of questions answered incremented');
+        return $this->redirectToRoute('app_user_getPoll', ['poll_token' => $poll_token, 'isSubmitted' => true]);
     }
 
 
@@ -85,7 +84,6 @@ class User_controller extends EasyAdminController{
             $user->setPassword($this->passwordEncoder->encodePassword($user, $user->getPlainPassword()));
         }
     }
-
 
 
 }
