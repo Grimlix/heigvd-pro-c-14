@@ -39,7 +39,7 @@
                                 <hr class="mx-2">
                             </div>
                             <div class="col-12 align-self-center">
-                                {{ question.text }}
+                                {{ question.text | nl2br}}
                             </div>
                             <div class="col-12 align-self-end">
                                 <hr class="mx-2">
@@ -63,7 +63,7 @@
                                                 {% set pourcent = 100*nbAns/totalAns %}
                                             {% endif %}
                                             <div class="progress mb-4">
-                                                <div class="progress-bar bg-orange" style="width: {{ pourcent }}%" role="progressbar">{{ pourcent }}%</div>
+                                                <div class="progress-bar bg-orange" style="width: {{ pourcent }}%" role="progressbar">{{ pourcent|round(2, 'floor') }}%</div>
                                             </div>
                                         {% endif %}
                                     {% endfor %}
