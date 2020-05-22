@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Boolean;
 use Symfony\Component\Form\AbstractType;
 
 /**
@@ -72,7 +73,7 @@ class Question extends AbstractType
         return $this;
     }
 
-    public function getOpen(): ?boolean{
+    public function getOpen(): ?bool{
         return $this->open;
     }
     public function setOpen(bool $open){
@@ -80,7 +81,7 @@ class Question extends AbstractType
         return $this;
     }
 
-    public function getClose(): ?boolean{
+    public function getClose(): ?bool{
         return $this->close;
     }
     public function setClose(bool $close){

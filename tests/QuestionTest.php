@@ -32,13 +32,43 @@ class QuestionTest extends WebTestCase
         $crawler = $client->followRedirect(true);
 
         $crawler = $client->request('GET','/admin/?entity=Question');
-        //Just to make sure we're on the right page
-      //  $this->assertSelectorTextContains('html body','Text');
-      //  $this->assertSelectorTextContains('html body','Poll');
-      //  $this->assertSelectorTextContains('html body','Tags');
-      //  $this->assertSelectorTextContains('html body','Answer');
-      //  $this->assertSelectorTextContains('html body','Add Question');
 
+        $addQuestion = $crawler
+            ->filter('a:contains("Add Question")')
+            ->eq(0) //select first link of the list
+            ->link();
+
+        $crawler = $client->click($addQuestion);
+
+        $createQuestionForm = $crawler->selectButton('Save changes')->form([
+            'question[text]' => 'Q1 : quelle est la meilleure matiere de la heig ?',
+        ]);
+
+
+        $crawler = $client->submit($createQuestionForm);
+        $crawler = $client->followRedirect(true);
+
+        $this->assertSelectorTextContains('html body','Q1 : quelle est la meilleure matiere de la heig ?');
+        $this->assertSelectorTextContains('html body','JeanFirstPoll');
+
+
+    }
+
+    public function testPollIsCreatedSameName(){
+        $client = static::createClient();
+
+        $crawler = $client->request('GET','/login');
+
+        $form = $crawler->selectButton('Log in')->form([
+            '_username' => 'JeanTest',
+            '_password' => '123',
+        ]);
+
+
+        $crawler = $client->submit($form);
+        $crawler = $client->followRedirect(true);
+
+        $crawler = $client->request('GET','/admin/?entity=Question');
 
         $addQuestion = $crawler
             ->filter('a:contains("Add Question")')
@@ -52,14 +82,14 @@ class QuestionTest extends WebTestCase
 
 
         $createQuestionForm = $crawler->selectButton('Save changes')->form([
-            'question[text]' => 'Q1 : quel est la meilleure matiere de la heig ?',
+            'question[text]' => 'Q2 : quelle est la deuxieme meilleure matiere de la heig ?',
         ]);
 
 
         $crawler = $client->submit($createQuestionForm);
         $crawler = $client->followRedirect(true);
 
-        $this->assertSelectorTextContains('html body','Q1 : quel est la meilleure matiere de la heig ?');
+        $this->assertSelectorTextContains('html body','Q2 : quelle est la deuxieme meilleure matiere de la heig ?');
         $this->assertSelectorTextContains('html body','JeanFirstPoll');
 
 

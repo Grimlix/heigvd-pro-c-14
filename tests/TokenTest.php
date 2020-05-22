@@ -12,14 +12,14 @@ class TokenTest extends WebTestCase
 
         $crawler = $client->request('GET', '/');
 
-        $form = $crawler->selectButton('Participer')->form([
+        $form = $crawler->selectButton('participer')->form([
             'token[token]' => 'JeanCode'
         ]);
 
-        $client->submit($form);
-        $client->followRedirects();
+        $crawler = $client->submit($form);
+        $crawler = $client->followRedirect();
 
-        $this->assertSelectorTextContains('html body', 'JeanCode');
+        $this->assertSelectorTextContains('html body', 'Poll is not currently running.');
     }
 
     public function testWithWrongToken()
@@ -28,13 +28,13 @@ class TokenTest extends WebTestCase
 
         $crawler = $client->request('GET', '/');
 
-        $form = $crawler->selectButton('Participer')->form([
+        $form = $crawler->selectButton('participer')->form([
             'token[token]' => '70K3N'
         ]);
 
-        $client->submit($form);
-        $client->followRedirects();
+        $crawler = $client->submit($form);
+        $crawler = $client->followRedirects();
 
-        $this->assertSelectorTextContains('html body', 'Pas de sondage trouvé');
+        $this->assertSelectorTextContains('html body', 'The value "70K3N" is not valid.');
     }
 }

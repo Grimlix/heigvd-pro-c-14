@@ -32,17 +32,27 @@ class Admin_controller extends EasyAdminController
     {
         $currentQuestion = $this->poll_service->get_current_poll_question($poll_token);
 
-        if (!$currentQuestion) {
-            $questions = $this->poll_service->get_current_poll_questions($poll_token);
+        if(!$currentQuestion){
 
-            $answers = array();
-            foreach ($questions as $q) {
-                $temp = $this->poll_service->get_current_question_answers($q);
-                array_push($answers, $temp);
+            $questions = $this->poll_service->get_current_poll_questions($poll_token);
+            $answers=array();
+            if (is_array($questions) || is_object($questions)){
+                foreach($questions as $q){
+                    $temp = $this->poll_service->get_current_question_answers($q);
+                    array_push($answers,$temp);
+                }
+            }else{
+                return $this->render('admin/runningPoll.html.twig', [
+                    'question' => 'You have no question in your poll.',
+                    'nextQuestionUrl' =>  $_SERVER['SYMFONY_WEBSITE_ROOT_URL'] . '/home/setNextQuestion/' . $poll_token,
+                    'lastQuestionUrl' => $_SERVER['SYMFONY_WEBSITE_ROOT_URL'] . '/home/setLastQuestion/' . $poll_token,
+                    'listenerUrl' => $_ENV['SYMFONY_WEBSITE_ROOT_URL'] . '/home/runPoll/' . $poll_token,
+                    'statsOn' => false
+                ]);
             }
 
-            $statistics = array();
-            foreach ($answers as $answer) {
+            $statistics=array();
+            foreach($answers as $answer){
                 $temp = $this->poll_service->get_answer_stats($answer);
                 array_push($statistics, $temp);
             }
@@ -63,11 +73,13 @@ class Admin_controller extends EasyAdminController
                 'question' => 'no question currently running',
                 'nextQuestionUrl' => $_SERVER['SYMFONY_WEBSITE_ROOT_URL'] . '/home/setNextQuestion/' . $poll_token,
                 'lastQuestionUrl' => $_SERVER['SYMFONY_WEBSITE_ROOT_URL'] . '/home/setLastQuestion/' . $poll_token,
-                //'nbQuestionAnswered' => $this->poll_statistic_service->get_answered_poll_count(),
                 'listenerUrl' => $_ENV['SYMFONY_WEBSITE_ROOT_URL'] . '/home/runPoll/' . $poll_token,
                 'statsOn' => false
             ]);
-        } else {
+
+
+        }
+        else{
             $currentQuestionAnswers = $this->poll_service->get_current_question_answers($currentQuestion);
             $currentQuestionStatistics = array();
             foreach ($currentQuestionAnswers as $answer) {
