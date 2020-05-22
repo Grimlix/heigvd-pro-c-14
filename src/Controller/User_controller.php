@@ -28,7 +28,7 @@ class User_controller extends EasyAdminController
     }
 
     //get current state of the poll i.e. current question
-    public function get_poll($poll_token)
+    public function get_poll($poll_token, Request $request)
     {
         $question = $this->poll_service->get_current_poll_question($poll_token);
 
@@ -47,6 +47,7 @@ class User_controller extends EasyAdminController
         return $this->render('user/poll.html.twig', [
             'question' => $question,
             'answers' => $answers,
+            'isSubmitted' => $request->query->get('isSubmitted'),
             'formUrl' => $_SERVER['SYMFONY_WEBSITE_ROOT_URL'] . '/incrementPollStatistic/' . $poll_token,
             'listenerUrl' => $_ENV['SYMFONY_WEBSITE_ROOT_URL'] . '/getPoll/' . $poll_token]);
     }
@@ -57,7 +58,7 @@ class User_controller extends EasyAdminController
 
         $this->poll_statistic_service->increment_answer_count($answerID);
         $this->poll_statistic_service->update_poll_statistic($poll_token);
-        return $this->redirectToRoute('app_user_getPoll', ['poll_token' => $poll_token]);
+        return $this->redirectToRoute('app_user_getPoll', ['poll_token' => $poll_token, 'isSubmitted' => true]);
     }
 
 

@@ -15,6 +15,9 @@
             </div>
             <div class="row m-2 p-2 py-4 bg-light">
                 <div class="col">
+                    {% if isSubmitted %}
+                    <h1>poil</h1>
+                    {% endif %}
                     <form action="{{ formUrl }}" method="get">
                         <div class="row">
                             {% for answer in answers %}
