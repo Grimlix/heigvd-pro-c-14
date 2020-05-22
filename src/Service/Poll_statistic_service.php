@@ -17,7 +17,8 @@ class Poll_statistic_service
     private $publisher;
     private $bus;
 
-    public function __construct(EntityManagerInterface $entity_manager, PublisherInterface $publisher, MessageBusInterface $bus){
+    public function __construct(EntityManagerInterface $entity_manager, PublisherInterface $publisher, MessageBusInterface $bus)
+    {
         $this->entity_manager = $entity_manager;
         $this->publisher = $publisher;
         $this->bus = $bus;
@@ -29,7 +30,7 @@ class Poll_statistic_service
             ->getRepository(PollStatistic::class)
             ->find(1);
         if (!$poll_statistic) {
-          $this->create_answer_statistic($answerID);
+            $this->create_answer_statistic($answerID);
             $poll_statistic = $this->entity_manager
                 ->getRepository(PollStatistic::class)
                 ->find(1);
@@ -51,20 +52,20 @@ class Poll_statistic_service
         }
         $poll_statistic->setCount($poll_statistic->getCount() + 1);
         $this->entity_manager->flush();
-
     }
 
-
-    public function create_question_statistics($question){
+    public function create_question_statistics($question)
+    {
         $ans = $this->entity_manager
-            ->getRepository(Answer::class )
+            ->getRepository(Answer::class)
             ->findBy(['question' => $question]);
-        foreach($ans as $a){
+        foreach ($ans as $a) {
             $this->create_answer_statistic($a);
         }
     }
 
-    private function create_answer_statistic($answerID){
+    private function create_answer_statistic($answerID)
+    {
         $poll_statistic = new PollStatistic($answerID);
         $poll_statistic->setCount(0);
         $this->entity_manager->persist($poll_statistic);
@@ -72,13 +73,12 @@ class Poll_statistic_service
     }
 
 
-
-    public function update_poll_statistic($poll_token){
+    public function update_poll_statistic($poll_token)
+    {
         $update = new Update(
             $_ENV['SYMFONY_WEBSITE_ROOT_URL'] . '/home/runPoll/' . $poll_token,
             json_encode(['action' => 'reload'])
         );
         $this->bus->dispatch($update);
     }
-
 }
