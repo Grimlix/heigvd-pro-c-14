@@ -48,7 +48,11 @@ class UserTest extends WebTestCase
         $this->assertEmpty($user->getPolls());
     }
 
-
+    public function testGetAndSetPlainPassword(){
+        $user = new User();
+        $user->setPlainPassword("hello");
+        $this->assertEquals("hello", $user->getPlainPassword());
+    }
 
 
 
