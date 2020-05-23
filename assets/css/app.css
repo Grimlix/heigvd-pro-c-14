@@ -297,6 +297,10 @@ MENU DEROULANT
     background-color: #FFE8C0;
 }
 
+.btn-orange.disabled, .btn-outline-orange.disabled {
+    background-color: #f8f9fa;
+}
+
 .btn-orange-filled{
     background-color: #f9af19!important;
     color: #FFFFFF!important;
@@ -427,4 +431,50 @@ input[type="radio"]:checked+label {
     height: 100%;
     overflow: auto;
     z-index: 0;
+}
+
+/*.disabled, *:disabled{
+    cursor: not-allowed!important;
+}*/
+
+.btn.disabled,
+.btn[disabled],
+fieldset[disabled] .btn {
+    cursor: not-allowed;
+}
+
+.waitnext{
+    z-index:1000;
+    background-color: #FFFFFFBB;
+    border:1px solid #f9af1966;
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+@media(max-width: 768px)  {
+    .waitnext{
+        width: 95%;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+}
+
+.min-h-25{
+    min-height: 25%;
+}
+
+.min-w-50{
+    min-width: 50%;
+}
+
+#infopage p{
+    color:#212529;
+}
+
+#infopage h1, #infopage h2,#infopage h3,#infopage h4,#infopage h5, #infopage h6, #infopage h7{
+    color:#f9af19;
+}
+
+.nav-link.active{
+    background-color: #00bb00!important;
 }
