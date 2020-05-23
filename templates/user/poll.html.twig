@@ -22,7 +22,7 @@
                         <div class="row">
                             {% for answer in answers %}
                                 <div class="col-sm-12 col-md-6 col-lg-3">
-                                    <input class="sr-only" type="radio" id="{{ answer.id }}" name="answer"
+                                    <input class="sr-only" type="radio" id="{{ answer.id }}" name="answer" required="required"
                                            value="{{ answer.id }}">
                                     <label class="btn btn-orange orange-border w-100 orange-text"
                                            for="{{ answer.id }}">{{ answer.answerText }}</label>
