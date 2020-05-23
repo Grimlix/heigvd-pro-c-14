@@ -32,14 +32,14 @@ class User_controller extends EasyAdminController
     {
         $question = $this->poll_service->get_current_poll_question($poll_token);
 
-        if (!$question) {
+        if(!$question) {
             //poll is not currently running (no open question)
             return $this->render('user/waitingPoll.html.twig', [
                 'listenerUrl' => $_ENV['SYMFONY_WEBSITE_ROOT_URL'] . '/home/runPoll/' . $poll_token
             ]);
         }
         $answers = $this->poll_service->get_current_poll_answers($question->getId());
-        if (!$answers) {
+        if(!$answers) {
             //question without any answer: means the poll is not correctly defined
             return new Response('Error, question without any answer');
         }
@@ -56,11 +56,14 @@ class User_controller extends EasyAdminController
     {
         $answerID = $request->get('answer');
 
+        if(!$answerID) {
+            $this->redirectToRoute('app_user_getPoll', ['poll_token' => $poll_token, 'isSubmitted' => false]);
+        }
+
         $this->poll_statistic_service->increment_answer_count($answerID);
         $this->poll_statistic_service->update_poll_statistic($poll_token);
         return $this->redirectToRoute('app_user_getPoll', ['poll_token' => $poll_token, 'isSubmitted' => true]);
     }
-
 
     public function persistUserEntity($user)
     {
@@ -80,10 +83,9 @@ class User_controller extends EasyAdminController
 
     public function updatePassword(User $user)
     {
-        if (!empty($user->getPlainPassword())) {
+        if(!empty($user->getPlainPassword())) {
             $user->setPassword($this->passwordEncoder->encodePassword($user, $user->getPlainPassword()));
         }
     }
-
 
 }
