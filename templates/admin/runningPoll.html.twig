@@ -37,8 +37,12 @@
             </div>
             <div class="row m-2 p-2 py-4 bg-light">
                 <div class="col">
+                    {% set inputValue = "Next question" %}
+                    {% if statsOn == false %}
+                        {% set inputValue = "Start poll" %}
+                    {% endif %}
                     <form action="{{ nextQuestionUrl }}" method="get">
-                        <input type="submit" value="Next question"/>
+                        <input type="submit" value="{{ inputValue }}"/>
                     </form>
                 </div>
             </div>
