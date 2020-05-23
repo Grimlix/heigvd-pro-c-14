@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Service;
-
 
 use App\Entity\Answer;
 use App\Entity\PollStatistic;
@@ -29,7 +27,7 @@ class Poll_statistic_service
         $poll_statistic = $this->entity_manager
             ->getRepository(PollStatistic::class)
             ->find(1);
-        if (!$poll_statistic) {
+        if(!$poll_statistic) {
             $this->create_answer_statistic($answerID);
             $poll_statistic = $this->entity_manager
                 ->getRepository(PollStatistic::class)
@@ -40,11 +38,15 @@ class Poll_statistic_service
 
     public function increment_answer_count($answerID)
     {
+        if(!$answerID) {
+            return;
+        }
+
         $poll_statistic = $this->entity_manager
             ->getRepository(PollStatistic::class)
             ->findOneBy(['answer_id' => $answerID]);
 
-        if (!$poll_statistic) {
+        if(!$poll_statistic) {
             $this->create_answer_statistic($answerID);
             $poll_statistic = $this->entity_manager
                 ->getRepository(PollStatistic::class)
@@ -59,19 +61,22 @@ class Poll_statistic_service
         $ans = $this->entity_manager
             ->getRepository(Answer::class)
             ->findBy(['question' => $question]);
-        foreach ($ans as $a) {
+        foreach($ans as $a) {
             $this->create_answer_statistic($a);
         }
     }
 
     private function create_answer_statistic($answerID)
     {
+        if(!$answerID) {
+            return;
+        }
+
         $poll_statistic = new PollStatistic($answerID);
         $poll_statistic->setCount(0);
         $this->entity_manager->persist($poll_statistic);
         $this->entity_manager->flush();
     }
-
 
     public function update_poll_statistic($poll_token)
     {
