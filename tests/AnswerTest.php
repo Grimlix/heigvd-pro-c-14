@@ -18,7 +18,7 @@ class AnswerTest extends TestCase
         $this->assertEquals($question, $answer->getQuestion());
     }
 
-    public function testSetAnswerTextAndWetAnswerText(){
+    public function testSetAnswerTextAndGetAnswerText(){
         $answer = new Answer();
         $string = "Pamplemousse";
         $answer->setAnswerText($string);
