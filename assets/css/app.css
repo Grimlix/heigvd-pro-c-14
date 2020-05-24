@@ -478,19 +478,41 @@ fieldset[disabled] .btn {
 
 .nav-link{
     color: black;
+    padding: 0.5rem 0rem!important;
 }
 
 .nav-link:hover {
     color: black;
     background-color: #F2C168;
-    transform: scale(1.1);
     text-decoration: none !important;
 }
 
 .nav-link.active{
-    background-color: #f9af19;
-
-
+    /*background-color: #f9af19;*/
+    /*border-bottom: 1px solid #f9af19;*/
+    color: #f9af19;
 }
 
+.dropdown-menu.collapsing {
+    display:block;
+}
 
+.dropdown-menu{
+    float: initial!important;
+    border:0px!important;
+    border-left: 1px solid #f9af19!important;
+    border-radius: 0px!important;
+    outline-offset: 10px;
+    outline-color: #0000cc;
+}
+
+#navbar-example{
+    display: block!important;
+    position: fixed;
+    margin-left: -15px;
+    width: 100%;
+    background: #ffffff;
+    overflow: auto;
+    height: 100vh;
+    top: 0;
+}
