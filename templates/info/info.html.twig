@@ -345,7 +345,7 @@
             var posToTop = ($('#bottom').offset().top + $('#bottom').outerHeight(true) ) - $(window).scrollTop();
             if(posToTop > 0){
                 $('#navbar-example').css('top', posToTop + "px");
-                $('#navbar-example').css('height', $( window ).height() + "px");
+                $('#navbar-example').css('height', ( $( window ).height() - posToTop ) + "px");
             }else{
                 $('#navbar-example').css('top', "0px");
                 $('#navbar-example').css('height', "100vh");
