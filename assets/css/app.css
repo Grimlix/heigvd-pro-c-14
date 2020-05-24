@@ -515,4 +515,25 @@ fieldset[disabled] .btn {
     overflow: auto;
     height: 100vh;
     top: 0;
+    max-width: 283px;
+}
+
+/* width */
+#navbar-example::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+#navbar-example::-webkit-scrollbar-track {
+    background: #f8f9fa;
+}
+
+/* Handle */
+#navbar-example::-webkit-scrollbar-thumb {
+    background: #f2dec2;
+}
+
+/* Handle on hover */
+#navbar-example::-webkit-scrollbar-thumb:hover {
+    background: #f9af19;
 }
