@@ -32,10 +32,16 @@
              */
             private $polls;
 
+            /**
+             * @ORM\OneToMany(targetEntity="App\Entity\Question", mappedBy="user")
+             */
+            private $questions;
+
             public function __construct()
             {
                 parent::__construct();
                 $this->polls = new ArrayCollection();
+                $this->questions = new ArrayCollection();
             }
 
 
@@ -58,6 +64,14 @@
                 return $this->polls;
             }
 
+            /**
+             * @return Collection|Question[]
+             */
+            public function getQuestions(): Collection
+            {
+                return $this->questions;
+            }
+
             public function addPoll(Poll $poll): self
             {
                 if (!$this->polls->contains($poll)) {
@@ -75,6 +89,29 @@
                     // set the owning side to null (unless already changed)
                     if ($poll->getUser() === $this) {
                         $poll->setUser(null);
+                    }
+                }
+
+                return $this;
+            }
+
+            public function addQuestion(Question $question): self
+            {
+                if (!$this->questions->contains($question)) {
+                    $this->questions[] = $question;
+                    $question->setUser($this);
+                }
+
+                return $this;
+            }
+
+            public function removeQuestion(Question $question): self
+            {
+                if ($this->questions->contains($question)) {
+                    $this->questions->removeElement($question);
+                    // set the owning side to null (unless already changed)
+                    if ($question->getUser() === $this) {
+                        $question->setUser(null);
                     }
                 }
 

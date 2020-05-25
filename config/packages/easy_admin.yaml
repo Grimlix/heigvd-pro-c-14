@@ -37,7 +37,7 @@ easy_admin:
             form:
               fields:
                 - 'text'
-                - 'poll'
+                - { property: 'poll', tpye: 'easyadmin_autocomplete'}
                 - { property: 'answers', type: 'collection', type_options: { entry_type: 'App\Form\AnswerEmbeddedForm', allow_delete: true, allow_add: true, by_reference: false, attr:{value: '',min: 1, max: 255 }} }
             list:
               fields:

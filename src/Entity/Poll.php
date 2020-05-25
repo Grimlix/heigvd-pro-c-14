@@ -55,8 +55,8 @@ class Poll
     private $questions;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="polls")
-     */
+ * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="polls")
+ */
     private $user;
 
     public function __construct($user){
