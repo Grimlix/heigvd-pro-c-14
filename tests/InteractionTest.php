@@ -28,12 +28,27 @@ class InteractionTest extends WebTestCase
     }
 
     // On test toute la partie de runningPoll au niveau des questions et de l'affichage admin
-    //ajouter affichage user ??
     public function testConnection(){
         $this->testStartPoll();
+        $this->testEnterPollClient();
         $this->testNextQuestion1();
+        $this->testNextQuestion1NoAnswerClient();
         $this->testNextQuestion2();
         $this->testEndPoll();
+    }
+
+    private function testEnterPollClient(){
+        $client = static::createClient();
+        //get the poll
+        $crawler = $client->request('GET','/getPoll/JeanCode');
+        $this->assertSelectorTextContains('html body','Waiting for the administrator to start the poll..');
+    }
+
+    private function testNextQuestion1NoAnswerClient(){
+        $client = static::createClient();
+        //submit next question
+        $crawler = $client->request('GET','/getPoll/JeanCode');
+        $this->assertSelectorTextContains('html body','Error, question without any answer');
     }
 
     private function testStartPoll(){
@@ -56,7 +71,6 @@ class InteractionTest extends WebTestCase
         $this->assertSame(false, $question1->getClose());
         $this->assertSame(false, $question2->getOpen());
         $this->assertSame(false, $question2->getClose());
-
     }
 
     private function testNextQuestion1(){
@@ -64,7 +78,6 @@ class InteractionTest extends WebTestCase
         $client = static::createClient();
 
         $repository = $this->entityManager->getRepository(Question::class);
-
 
         //submit next question
         $crawler = $client->request('GET','/home/setNextQuestion/JeanCode');
@@ -150,15 +163,9 @@ class InteractionTest extends WebTestCase
     protected function tearDown(): void
     {
         parent::tearDown();
-
         // doing this is recommended to avoid memory leaks
         $this->entityManager->close();
         $this->entityManager = null;
     }
-
-
-
-
-
 
 }

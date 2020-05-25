@@ -76,12 +76,15 @@
             </div>
             <div class="row m-2 p-2 py-4 bg-light">
                 <div class="col">
+                    {% set inputValue = "Next question" %}
+                    {% if statsOn == false %}
+                        {% set inputValue = "Start poll" %}
+                    {% endif %}
                     <form action="{{ nextQuestionUrl }}" method="get">
                         <button class="btn btn-orange orange-border orange-text pull-right min-w-50" type="submit"
                                 value="Next question">
                             Next question <span class="material-icons">arrow_forward_ios</span>
                         </button>
-                        <!-- <input class="btn btn-orange orange-border orange-text" type="submit" value="Next question"/> -->
                     </form>
                 </div>
             </div>

@@ -17,6 +17,18 @@ class QuestionTest extends WebTestCase
         $this->assertEquals($text, $question->getText());
     }
 
+    public function testSetOpenAndGetOpen(){
+        $question = new Question();
+        $question->setOpen(true);
+        $this->assertEquals(true, $question->getOpen());
+    }
+
+    public function testSetCloseAndGetClose(){
+        $question = new Question();
+        $question->setClose(true);
+        $this->assertEquals(true, $question->getClose());
+    }
+
     public function testPollIsCreated(){
         $client = static::createClient();
 
@@ -54,7 +66,7 @@ class QuestionTest extends WebTestCase
 
     }
 
-    public function testPollIsCreatedSameName(){
+    public function testPollIsCreated2(){
         $client = static::createClient();
 
         $crawler = $client->request('GET','/login');

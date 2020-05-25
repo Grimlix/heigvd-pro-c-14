@@ -8,16 +8,16 @@ easy_admin:
     entities:
         User:
           class: App\Entity\User
+          disabled_actions: ['edit', 'delete']
           list:
             fields:
               - 'username'
               - 'email'
               - 'lastLogin'
-          edit:
+          show:
             fields:
-              - { property: 'username'}
-              - { property: 'email'}
-              - { property: 'plainPassword'}
+              - 'username'
+              - 'email'
         Poll:
             class: App\Entity\Poll
             form:
@@ -38,7 +38,7 @@ easy_admin:
               fields:
                 - 'text'
                 - 'poll'
-                - { property: 'answers', type: 'collection', type_options: { entry_type: 'App\Form\AnswerEmbeddedForm', allow_delete: true, allow_add: true, by_reference: false} }
+                - { property: 'answers', type: 'collection', type_options: { entry_type: 'App\Form\AnswerEmbeddedForm', allow_delete: true, allow_add: true, by_reference: false, attr:{value: '',min: 1, max: 255 }} }
             list:
               fields:
                 - 'text'
