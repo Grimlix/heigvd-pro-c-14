@@ -51,7 +51,7 @@
                 {% endif %}
                 <div class="dropdown-divider"></div>
                 <a href="{{ url('app_user_index') }}" class="border-0 list-group-item list-group-item-action bg-light"><span class="material-icons">home</span> home</a>
-                <a href="#" class="border-0 list-group-item list-group-item-action bg-light"><span class="material-icons">info</span> à propos</a>
+                <a href="{{ url('app_infoPage')}}" class="border-0 list-group-item list-group-item-action bg-light"><span class="material-icons">info</span> à propos</a>
             </div>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -63,7 +63,7 @@
                     <div class="col">
                         <div class="d-flex flex-column h-100">
                             <div class="row">
-                                <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between shadow-sm w-100">
+                                <nav id="bottom" class="navbar navbar-expand-lg navbar-light bg-light justify-content-between shadow-sm w-100">
                                     <button class="menu-toggle btn btn-orange"><span class="material-icons orange-text text-medium">menu</span></button>
 
                                     <a class="btn btn-orange" href="{{ url('app_user_index') }}"><img src="{{asset('image/BoutonPR.png')}}" alt="PointRéponse" style="width:auto; height:3em;margin-top:-17px;"></a>

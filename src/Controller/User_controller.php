@@ -48,6 +48,7 @@ class User_controller extends EasyAdminController
             'question' => $question,
             'answers' => $answers,
             'isSubmitted' => $request->query->get('isSubmitted'),
+            'answerID' => $request->query->get('answerID'),
             'formUrl' => $_SERVER['SYMFONY_WEBSITE_ROOT_URL'] . '/incrementPollStatistic/' . $poll_token,
             'listenerUrl' => $_ENV['SYMFONY_WEBSITE_ROOT_URL'] . '/getPoll/' . $poll_token]);
     }
@@ -62,7 +63,7 @@ class User_controller extends EasyAdminController
 
         $this->poll_statistic_service->increment_answer_count($answerID);
         $this->poll_statistic_service->update_poll_statistic($poll_token);
-        return $this->redirectToRoute('app_user_getPoll', ['poll_token' => $poll_token, 'isSubmitted' => true]);
+        return $this->redirectToRoute('app_user_getPoll', ['poll_token' => $poll_token, 'isSubmitted' => true, 'answerID' => $answerID]);
     }
 
     public function persistUserEntity($user)

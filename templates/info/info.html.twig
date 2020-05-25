@@ -1,0 +1,355 @@
+{%  extends 'base.html.twig' %}
+
+{%  block body %}
+
+    <div id="infopage" class="row flex-grow-1">
+        <div class="container bg-orange-light shadow question-content">
+            <div class="row">
+                <div class="col-lg-12 col-xl-9 my-5">
+                    <div data-spy="scroll" data-target="#navbar-example" data-offset="0" class="row">
+                        <div class="col-12 py-3">
+                            <h3 id="a-propos-1">A propos</h3>
+                            <p>QuestionRéponse est une application web qui permet de créer des sondages, directement sur votre navigateur, avec la possibilité pour les utilisateurs de répondre eux aussi, sur leur navigateur.</p>
+                        </div>
+                        <div class="col-12 bg-light py-3">
+                            <h3 id="utilisation-1">Utilisation</h3>
+                            <p>Deux utilisations distinctes sont proposés sur QuestionRéponse :</p>
+                            <ul>
+                                <li>La création de sondage</li>
+                                <li>La participation à un sondage.</li>
+                            </ul>
+                        </div>
+                        <div class="col-12 py-3">
+                            <h4 id="utilisation-1-1">Barre de navigation</h4>
+                            <div class="row">
+                                <div class="col align-self-center">
+                                    <p>Le bouton menu, en haut à gauche de la barre de navigation, permet d'avoir un menu déroulant comprenant les principales fonctionnalités.</p>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-4">
+                                    <img src="{{asset('image/iconMenu.png')}}" class="img img-fluid" alt="participation">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col align-self-center">
+                                    <p>Le bouton login, en haut à droite, permet d'afficher les options de connexions.</p>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-4">
+                                    <img src="{{asset('image/iconLogin.png')}}" width="53" class="img img-fluid" alt="participation">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-12 py-3">
+                            <h4 id="utilisation-1-2">Participation au sondage</h4>
+                            <p>Pour pouvoir participer à un sondage il suffit de rentrer le bon code d’accès, le site web va alors directement se connecter au sondage lié à ce code unique.</p>
+                        </div>
+                        <div class="col-12 py-3">
+                            <div class="row">
+                                <div class="col align-self-center">
+                                    <h5 id="utilisation-1-2-1">Code de participation</h5>
+                                    <p>Chaque code d’utilisation correspond à un sondage unique et doit être distribués avant le démarrage d’un sondage.</p>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-4">
+                                    <img src="{{asset('image/participation.png')}}" class="img img-fluid" alt="participation">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 py-3">
+                            <h5 id="utilisation-1-2-2">Mauvais code ?</h5>
+                            <p>Il est indiqué lorsqu’un code n’est valide pour aucun sondage et il faudrait se renseigner à nouveau auprès du chargé de sondage pour récupérer le bon code.</p>
+                        </div>
+                        <div class="col-12 py-3">
+                            <h5 id="utilisation-1-2-3">Participer</h5>
+                            <p>Pour participer à un sondage il suffit de rentrer le bon code d’accès connu à l’avance et de cliquer sur le bouton <span class="btn btn-sm btn-orange-filled rounded-pill text-uppercase px-4">participer</span> Le navigateur va alors se connecter directement au sondage lié au code d’accès.</p>
+                        </div>
+                        <div class="col-12 py-3">
+                            <div class="row">
+                                <div class="col align-self-center">
+                                    <h5 id="utilisation-1-2-4">Attente du démarrage du sondage</h5>
+                                    <p>Une fois le code rentré il faudra éventuellement attendre que le sondage soit lancé, une fenêtre indiquera si ce n’est pas le cas.</p>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-4">
+                                    <img src="{{asset('image/waiting-poll.png')}}" class="img img-fluid" alt="waiting for poll">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 py-3">
+                            <div class="row">
+                                <div class="col align-self-center">
+                                    <h5 id="utilisation-1-2-5">Réponse aux questions</h5>
+                                    <p>Les questions arrivent en direct, sous la forme de QCM, il faut appuyer sur le bouton <span class="btn btn-sm btn-outline-secondary"><span class="material-icons">done_outline</span> Submit</span> une fois le choix effectué. Une fois la question passé on ne peut pas revenir en arrière.</p>
+                                    <p>Il n’est pas non plus possible de parcourir les questions suivantes.</p>
+                                </div>
+                                <div class="col-sm-6 col-md-3 col-lg-4">
+                                    <img src="{{asset('image/ChoixReponseQ1.png')}}" class="img img-fluid" alt="exemple choix réponce">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 bg-light py-3">
+                            <h4 id="utilisation-1-3">Création de sondage</h4>
+                            <p>Pour la création d’un sondage personnalisé il faut d’abord se connecter avec un compte.</p>
+                        </div>
+                        <div class="col-12 py-3">
+                            <div class="row">
+                                <div class="col align-self-center">
+                                    <h5 id="utilisation-1-3-1">Se connecter</h5>
+                                    <p>Pour se connecter le navigateur à besoin d’un émail et d’un mot de passe associé.</p>
+                                </div>
+                                <div class="col-sm-6 col-md-3 col-lg-4">
+                                    <img src="{{asset('image/connexion.png')}}" class="img img-fluid" alt="connexion 1">
+                                </div>
+                                <div class="col-sm-6 col-md-3 col-lg-4">
+                                    <img src="{{asset('image/connexion1.png')}}" class="img img-fluid" alt="connexion 2">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 py-3">
+                            <div class="row">
+                                <div class="col align-self-center">
+                                    <h5 id="utilisation-1-3-2">Créer un compte</h5>
+                                    <p>Pour la création d’un nouveau compte il suffit d’entrer une adresse mail valide, un identifiant et de choisir un mot de passe.</p>
+                                </div>
+                                <div class="col-sm-6 col-md-3 col-lg-4">
+                                    <img src="{{asset('image/créationcompte.png')}}" class="img img-fluid" alt="création compte">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 py-3">
+                            <div class="row">
+                                <div class="col align-self-center">
+                                    <h5 id="utilisation-1-3-3">Mot de passe oublié ?</h5>
+                                    <p>En cas d’oubli d’un mot de passe il faut utiliser la récupération de mot de passe qui va alors envoyer un émail à l’adresse du compte afin de pouvoir en recréer un nouveau.</p>
+                                </div>
+                                <div class="col-sm-6 col-md-3 col-lg-4">
+                                    <img src="{{asset('image/motDePasseOublié.png')}}" class="img img-fluid" alt="mot de passe oublié">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 py-3">
+                            <div class="row">
+                                <div class="col align-self-center">
+                                    <p> Une fois le lien de récupération reçu dans la boite mail, il suffit de cliquer sur celui-ci pour recréer un nouveau mot de passe.</p>
+                                </div>
+                                <div class="col-sm-6 col-md-3 col-lg-4">
+                                    <img src="{{asset('image/nouveauMDP.png')}}" class="img img-fluid" alt="changement mdp">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 py-3">
+                            <div class="row">
+                                <div class="col align-self-center">
+                                    <h5 id="utilisation-1-3-4">Espace Admin</h5>
+                                    <p>Une fois connecté, l’accès à l’espace admin est maintenant possible et c’est ici que la création des sondage sera effectué.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 py-3">
+                            <div class="row">
+                                <div class="col align-self-center">
+                                    <p>Un menu déroulant permet d’avoir un aperçu des fonctionnalités utile pour l’administrateur de sondage.</p>
+                                </div>
+                                <div class="col-sm-6 col-md-3 col-lg-4">
+                                    <img src="{{asset('image/menu poll.png')}}" class="img img-fluid" alt="menu admin">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 py-3">
+                            <div class="row">
+                                <div class="col align-self-center">
+                                    <h5 id="utilisation-1-3-5">Ajout d’un sondage</h5>
+                                    <p>Il faut appuyer sur le bouton « Add Poll » pour établir un nouveau sondage.
+                                        La possibilité de modifier  un sondage qui n’a pas encore été lancé se fait avec la bouton « edit »
+                                        Finalement pour le lancer il faut exécuter avec le bouton Run.</p>
+                                </div>
+                                <div class="col-sm-6 col-md-3 col-lg-4">
+                                    <img src="{{asset('image/poll.png')}}" class="img img-fluid" alt="menu admin">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 py-3">
+                            <div class="row">
+                                <div class="col align-self-center">
+                                    <h5 id="utilisation-1-3-6">Ajout de question</h5>
+                                    <p>C’est dans la section « question qu’il est possible de créer des questions uniques qu’il faudra attribuer à un des sondage créé.</p>
+                                </div>
+                                <div class="col-sm-6 col-md-3 col-lg-4">
+                                    <img src="{{asset('image/questionAdmin.png')}}" class="img img-fluid" alt="menu admin">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 py-3">
+                            <div class="row">
+                                <div class="col align-self-center">
+                                    <p>L’administrateur a une vue des votes en direct. Il doit appuyer sur le bouton « next question » pour passer à la question suivante.</p>
+                                </div>
+                                <div class="col-sm-6 col-md-3 col-lg-4">
+                                    <img src="{{asset('image/Quesiton1Running.png')}}" class="img img-fluid" alt="menu admin">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 py-3">
+                            <div class="row">
+                                <div class="col align-self-center">
+                                    <h5 id="utilisation-1-3-7">Statistiques</h5>
+                                    <p>Une fois le sondage terminé on peut voir la statistique de réponse de toutes les questions posées</p>
+                                </div>
+                                <div class="col-sm-6 col-md-3 col-lg-4">
+                                    <img src="{{asset('image/statPetit.png')}}" class="img img-fluid" alt="menu admin">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 bg-light py-3">
+                            <div class="row">
+                                <div class="col align-self-center">
+                                    <h5 id="utilisation-1-4">Nous contacter</h5>
+                                    <p>Nous nous engageons à mettre ce site à la disposition de toutes les personnes, indépendamment de leurs dispositions physiques et/ou cognitives.
+                                        Si toutefois vous veniez à rencontrer un problème lors de la navigation ou lors de l’accès à certains contenus sur le site, n’hésitez pas à nous contacter en détaillant au maximum votre situation et le problème rencontré afin que nous trouvions ensemble une solution.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 py-3">
+                            <div class="row">
+                                <div class="col align-self-center">
+                                    <h5 id="utilisation-1-4-1">Par email</h5>
+                                    <p>Pour nous contacter par mail, vous pouvez écrire directement à l’adresse suivante : [contact@monsite.ch].</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 py-3">
+                            <div class="row">
+                                <div class="col align-self-center">
+                                    <h5 id="utilisation-1-4-2">Par téléphone</h5>
+                                    <p>Pour nous contacter par téléphone, vous pouvez appeler le numéro suivant : [+41 079 000 00 00]. Ce numéro est disponible [du lundi au vendredi, de 09h00 à 18h00].</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3 bd-sidebar bg-light d-none d-xl-block">
+                    <nav id="navbar-example" class="navbar navbar-light flex-column">
+                        <h5>Table des matières</h5>
+                        <ul class="nav flex-md-column flex-row justify-content-between">
+                            <li class="nav-item">
+                                <a href="#a-propos-1" class="nav-link active">A propos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#utilisation-1" class="nav-link dropdown-toggle" data-toggle="collapse" data-target="#utilisation-1-dd">Utilisation</a>
+                                <ul id="utilisation-1-dd" class="nav flex-md-column pl-4 dropdown-menu collapse position-relative">
+                                    <li class="nav-item">
+                                        <a href="#utilisation-1-1" class="nav-link">Barre de tâche</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#utilisation-1-2" class="nav-link dropdown-toggle" data-toggle="collapse" data-target="#utilisation-1-2-dd">Participation au sondage</a>
+                                        <ul id="utilisation-1-2-dd" class="nav flex-md-column pl-4 dropdown-menu collapse position-relative" aria-labelledby="utilisation-1-2">
+                                            <li class="nav-item"><a href="#utilisation-1-2-1" class="nav-link">Code de participation</a></li>
+                                            <li class="nav-item"><a href="#utilisation-1-2-2" class="nav-link">Mauvais code ?</a></li>
+                                            <li class="nav-item"><a href="#utilisation-1-2-3" class="nav-link">Participer</a></li>
+                                            <li class="nav-item"><a href="#utilisation-1-2-4" class="nav-link">Attente du démarrage du sondage</a></li>
+                                            <li class="nav-item"><a href="#utilisation-1-2-5" class="nav-link">Réponse aux questions</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#utilisation-1-3" class="nav-link dropdown-toggle" data-toggle="collapse" data-target="#utilisation-1-3-dd">Création de sondage</a>
+                                        <ul id="utilisation-1-3-dd" class="nav flex-md-column pl-4 dropdown-menu collapse position-relative">
+                                            <li class="nav-item"><a href="#utilisation-1-3-1" class="nav-link">Se connecter</a></li>
+                                            <li class="nav-item"><a href="#utilisation-1-3-2" class="nav-link">Créer un compte</a></li>
+                                            <li class="nav-item"><a href="#utilisation-1-3-3" class="nav-link">Mot de passe oublié ?</a></li>
+                                            <li class="nav-item"><a href="#utilisation-1-3-4" class="nav-link">Espace Admin</a></li>
+                                            <li class="nav-item"><a href="#utilisation-1-3-5" class="nav-link">Ajout d'un sondage</a></li>
+                                            <li class="nav-item"><a href="#utilisation-1-3-6" class="nav-link">Ajout de question</a></li>
+                                            <li class="nav-item"><a href="#utilisation-1-3-7" class="nav-link">Statistiques</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#utilisation-1-4" class="nav-link dropdown-toggle" data-toggle="collapse" data-target="#utilisation-1-4-dd">Nous contacter</a>
+                                <ul id="utilisation-1-4-dd" class="nav flex-md-column pl-4 dropdown-menu collapse position-relative">
+                                    <li class="nav-item"><a href="#utilisation-1-4-1" class="nav-link">Par email</a></li>
+                                    <li class="nav-item"><a href="#utilisation-1-4-2" class="nav-link">Par téléphone</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- <nav id="navbar-example" class="navbar navbar-light flex-column" style="position: fixed; margin-left:-25px;">
+                        <a class="navbar-brand" href="#">Table des matières</a>
+                        <ul class="nav flex-md-column flex-row justify-content-between">
+                            <li class="nav-item"><a href="#a-propos-1" class="nav-link active pl-0">A propos</a></li>
+                            <li class="nav-item"><a href="#utilisation-1" class="nav-link pl-0">Utilisation</a>
+                                <ul class="nav flex-md-column ml-2">
+                                    <li class="nav-item"><a href="#utilisation-1-1" class="nav-link">Barre de tâche</a></li>
+                                    <li class="nav-item"><a href="#utilisation-1-2" class="nav-link">Participation au sondage</a>
+                                        <ul class="nav flex-md-column ml-2">
+                                            <li class="nav-item"><a href="#utilisation-1-2-1" class="nav-link">Code de participation</a></li>
+                                            <li class="nav-item"><a href="#utilisation-1-2-2" class="nav-link">Mauvais code ?</a></li>
+                                            <li class="nav-item"><a href="#utilisation-1-2-3" class="nav-link">Participer</a></li>
+                                            <li class="nav-item"><a href="#utilisation-1-2-4" class="nav-link">Attente du démarrage du sondage</a></li>
+                                            <li class="nav-item"><a href="#utilisation-1-2-5" class="nav-link">Réponse aux questions</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item"><a href="#utilisation-1-3" class="nav-link">Création de sondage</a>
+                                        <ul class="nav flex-md-column ml-2">
+                                            <li class="nav-item"><a href="#utilisation-1-3-1" class="nav-link">Se connecter</a></li>
+                                            <li class="nav-item"><a href="#utilisation-1-3-2" class="nav-link">Créer un compte</a></li>
+                                            <li class="nav-item"><a href="#utilisation-1-3-3" class="nav-link">Mot de passe oublié ?</a></li>
+                                            <li class="nav-item"><a href="#utilisation-1-3-4" class="nav-link">Espace Admin</a></li>
+                                            <li class="nav-item"><a href="#utilisation-1-3-5" class="nav-link">Ajout d'un sondage</a></li>
+                                            <li class="nav-item"><a href="#utilisation-1-3-6" class="nav-link">Ajout de question</a></li>
+                                            <li class="nav-item"><a href="#utilisation-1-3-7" class="nav-link">Statistiques</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item"><a href="#utilisation-1-4" class="nav-link">Nous contacter</a>
+                                        <ul class="nav flex-md-column ml-2">
+                                            <li class="nav-item"><a href="#utilisation-1-4-1" class="nav-link">Par email</a></li>
+                                            <li class="nav-item"><a href="#utilisation-1-4-2" class="nav-link">Par téléphone</a></li>
+                                            </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav> -->
+                        <!-- <nav class="nav nav-pills flex-column">
+                            <a class="nav-link" href="#a-propos-1">A propos</a>
+                            <nav class="nav nav-pills flex-column">
+                                <a class="nav-link ml-3 my-1" href="#item-1-1">Item 1-1</a>
+                                <a class="nav-link ml-3 my-1" href="#item-1-2">Item 1-2</a>
+                            </nav>
+                            <a class="nav-link" href="#item-2">Item 2</a>
+                            <a class="nav-link active" href="#item-3">Item 3</a>
+                            <nav class="nav nav-pills flex-column">
+                                <a class="nav-link ml-3 my-1" href="#item-3-1">Item 3-1</a>
+                                <a class="nav-link ml-3 my-1 active" href="#item-3-2">Item 3-2</a>
+                            </nav>
+                        </nav> -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            infoNavBar();
+            $( window ).resize(function() {
+                infoNavBar();
+            });
+            $( window ).scroll(function() {
+                infoNavBar();
+            });
+        });
+
+        function infoNavBar(){
+            $('body').scrollspy({target: '#navbar-example'});
+            var posToTop = ($('#bottom').offset().top + $('#bottom').outerHeight(true) ) - $(window).scrollTop();
+            if(posToTop > 0){
+                $('#navbar-example').css('top', posToTop + "px");
+                $('#navbar-example').css('height', ( $( window ).height() - posToTop ) + "px");
+            }else{
+                $('#navbar-example').css('top', "0px");
+                $('#navbar-example').css('height', "100vh");
+            }
+        }
+    </script>
+{% endblock %}
