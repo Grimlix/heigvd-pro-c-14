@@ -22,6 +22,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     fields={"user","name"},
  *     message="Vous avez deja un poll portant ce nom"
  * )
+ * @UniqueEntity("name")
  * @UniqueEntity("passToken")
  */
 class Poll
