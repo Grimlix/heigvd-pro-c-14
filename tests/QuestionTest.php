@@ -5,13 +5,15 @@ namespace App\Tests;
 
 
 use App\Entity\Question;
+use App\Entity\User;
 use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class QuestionTest extends WebTestCase
 {
     public function testSetTextAndGetText(){
-        $question = new Question();
+        $user = new User();
+        $question = new Question($user);
         $text = "Hello World!";
         $question->setText($text);
         $this->assertEquals($text, $question->getText());

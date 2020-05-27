@@ -13,6 +13,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Security;
 use App\Entity\Poll;
+use App\Entity\Question;
+
 
 class Admin_controller extends EasyAdminController
 {
@@ -30,6 +32,15 @@ class Admin_controller extends EasyAdminController
 
     public function run_poll($poll_token)
     {
+
+        $user = $this->security->getUser();
+        $poll_user = $this->poll_service->get_poll_user($poll_token);
+//        dump($user != $poll_user);
+//        exit(0);
+        if($user != $poll_user){
+            return $this->redirectToRoute('easyadmin');
+        }
+
         $currentQuestion = $this->poll_service->get_current_poll_question($poll_token);
 
         if(!$currentQuestion){
@@ -124,9 +135,15 @@ class Admin_controller extends EasyAdminController
         } else if ($entityClass == User::class) {
             $user = $this->security->getUser();
             $response->andWhere('entity.id = :userId')->setParameter('userId', $user);
+        } else if ($entityClass == Question::class) {
+            $user = $this->security->getUser();
+            $response->andWhere('entity.user = :userId')->setParameter('userId', $user);
         }
+
         return $response;
     }
+
+
 
     // fonction page home ici pour l'instant
     public function home()
@@ -140,6 +157,7 @@ class Admin_controller extends EasyAdminController
     // Override of the method in EasyAdminController. Allowing us to show only current User's database
     protected function createSearchQueryBuilder($entityClass, $searchQuery, array $searchableFields, $sortField = null, $sortDirection = null, $dqlFilter = null)
     {
+
         $response = parent::createSearchQueryBuilder($entityClass, $searchQuery, $searchableFields, $sortField, $sortDirection, $dqlFilter);
         if ($entityClass == Poll::class) {
             $user = $this->security->getUser();
@@ -147,9 +165,13 @@ class Admin_controller extends EasyAdminController
         } else if ($entityClass == User::class) {
             $user = $this->security->getUser();
             $response->andWhere('entity.id = :userId')->setParameter('userId', $user);
+        } else if ($entityClass == Question::class) {
+            $user = $this->security->getUser();
+            $response->andWhere('entity.user = :userId')->setParameter('userId', $user);
         }
         return $response;
     }
+
 
     // Creates a new instance of the entity being created. This instance is passed
     // to the form created with the 'createNewForm()' method. Override this method
@@ -157,5 +179,13 @@ class Admin_controller extends EasyAdminController
     protected function createNewPollEntity()
     {
         return new Poll($this->getUser());
+    }
+
+    // Creates a new instance of the entity being created. This instance is passed
+    // to the form created with the 'createNewForm()' method. Override this method
+    // if your entity has a constructor that expects some arguments to be passed
+    protected function createNewQuestionEntity()
+    {
+        return new Question($this->getUser());
     }
 }

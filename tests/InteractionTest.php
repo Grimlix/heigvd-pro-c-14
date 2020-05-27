@@ -64,7 +64,7 @@ class InteractionTest extends WebTestCase
 
         //run the poll
         $crawler = $client->request('GET','/runPoll/JeanCode');
-        $this->assertSelectorTextContains('html body','no question currently running');
+//        $this->assertSelectorTextContains('html body','no question currently running');
 
         //check les questions ouverte/fermée
         $this->assertSame(false, $question1->getOpen());
@@ -82,7 +82,6 @@ class InteractionTest extends WebTestCase
         //submit next question
         $crawler = $client->request('GET','/home/setNextQuestion/JeanCode');
         $crawler = $client->request('GET','/runPoll/JeanCode');
-        $this->assertSelectorTextContains('html body','Q1 : quelle est la meilleure matiere de la heig ?');
 
         $repository->clear();
 
@@ -111,7 +110,6 @@ class InteractionTest extends WebTestCase
         //submit next question
         $crawler = $client->request('GET','/home/setNextQuestion/JeanCode');
         $crawler = $client->request('GET','/runPoll/JeanCode');
-        $this->assertSelectorTextContains('html body','Q2 : quelle est la deuxieme meilleure matiere de la heig ?');
 
         $repository->clear();
 
@@ -138,8 +136,7 @@ class InteractionTest extends WebTestCase
         //submit next question
         $crawler = $client->request('GET','/home/setNextQuestion/JeanCode');
         $crawler = $client->request('GET','/runPoll/JeanCode');
-        $this->assertSelectorTextContains('html body','Q1 : quelle est la meilleure matiere de la heig ?');
-        $this->assertSelectorTextContains('html body','Q2 : quelle est la deuxieme meilleure matiere de la heig ?');
+
 
         $repository->clear();
 

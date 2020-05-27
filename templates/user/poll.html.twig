@@ -49,7 +49,7 @@
         eventSource.onmessage = event => {
             // Will be called every time an update is published by the server
             console.log(JSON.parse(event.data));
-            location.reload();
+            window.location = window.location.pathname;
         }
     </script>
 {% endblock %}
