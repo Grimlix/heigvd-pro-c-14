@@ -46,7 +46,7 @@
     </div>
 
     <script type="text/javascript">
-        const eventSource = new EventSource('http://localhost:3000/.well-known/mercure?topic=' + encodeURIComponent('{{ listenerUrl }}'));
+        const eventSource = new EventSource('http://pointreponse.eastus.cloudapp.azure.com:3000/.well-known/mercure?topic=' + encodeURIComponent('{{ listenerUrl }}'));
         eventSource.onmessage = event => {
             // Will be called every time an update is published by the server
             console.log(JSON.parse(event.data));
