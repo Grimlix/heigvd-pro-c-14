@@ -19,4 +19,13 @@ class PollRepository extends ServiceEntityRepository
         parent::__construct($registry, Poll::class);
     }
 
+    public function findAllPollbyUser($userId = 5)
+    {
+      return  $qb = $this->createQueryBuilder('p')
+            ->where('p.user = :user')
+            ->setParameter('user', $userId)
+            ->orderBy('p.name', 'ASC');
+
+
+    }
 }
