@@ -5,16 +5,30 @@ namespace App\Tests;
 
 
 use App\Entity\Question;
+use App\Entity\User;
 use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class QuestionTest extends WebTestCase
 {
     public function testSetTextAndGetText(){
-        $question = new Question();
+        $user = new User();
+        $question = new Question($user);
         $text = "Hello World!";
         $question->setText($text);
         $this->assertEquals($text, $question->getText());
+    }
+
+    public function testSetOpenAndGetOpen(){
+        $question = new Question();
+        $question->setOpen(true);
+        $this->assertEquals(true, $question->getOpen());
+    }
+
+    public function testSetCloseAndGetClose(){
+        $question = new Question();
+        $question->setClose(true);
+        $this->assertEquals(true, $question->getClose());
     }
 
     public function testPollIsCreated(){
@@ -54,7 +68,7 @@ class QuestionTest extends WebTestCase
 
     }
 
-    public function testPollIsCreatedSameName(){
+    public function testPollIsCreated2(){
         $client = static::createClient();
 
         $crawler = $client->request('GET','/login');

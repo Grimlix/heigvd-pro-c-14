@@ -42,17 +42,23 @@ class Question extends AbstractType
     private $open;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="questions")
+     */
+    private $user;
+
+    /**
      * @ORM\Column(type="boolean")
      */
     private $close;
 
 
-    public function __construct()
+    public function __construct($user)
     {
         $this->tags = new ArrayCollection();
         $this->answers = new ArrayCollection();
         $this->open = false;
         $this->close = false;
+        $this->setUser($user);
     }
 
     /* For easyAdmin */
@@ -127,5 +133,17 @@ class Question extends AbstractType
         }
 
         return $this;
+    }
+
+
+
+    public function setUser(?User $user): self{
+        $this->user = $user;
+        return $this;
+    }
+
+
+    public function getUser(): ?User{
+        return $this->user;
     }
 }

@@ -18,12 +18,10 @@
                     {% for answer in answers %}
                         {% for ans in answer %}
                             {% if ans.question.id == question.id %}
-                                {% set nbAns = 0 %}
                                 {% for statistic in statistics %}
                                     {% for stat in statistic %}
                                         {% if ans.id == stat.answer_id %}
-                                            {% set nbAns =  stat.count  %}
-                                            {% set totalAns = totalAns + nbAns %}
+                                            {% set totalAns = totalAns + stat.count %}
                                         {% endif %}
                                     {% endfor %}
                                 {% endfor %}
@@ -39,7 +37,7 @@
                                 <hr class="mx-2">
                             </div>
                             <div class="col-12 align-self-center">
-                                {{ question.text }}
+                                {{ question.text | nl2br}}
                             </div>
                             <div class="col-12 align-self-end">
                                 <hr class="mx-2">
@@ -47,7 +45,7 @@
                                     {% for ans in answer %}
                                         {% if ans.question.id == question.id %}
                                             <div class="row">
-                                                <div class="col">{{ ans.answerText }}</div>
+                                                <div class="col">{{ ans.answerText | nl2br }}</div>
                                                 {% set nbAns = 0 %}
                                                 {% for statistic in statistics %}
                                                     {% for stat in statistic %}
@@ -63,7 +61,7 @@
                                                 {% set pourcent = 100*nbAns/totalAns %}
                                             {% endif %}
                                             <div class="progress mb-4">
-                                                <div class="progress-bar bg-orange" style="width: {{ pourcent }}%" role="progressbar">{{ pourcent }}%</div>
+                                                <div class="progress-bar bg-orange" style="width: {{ pourcent }}%" role="progressbar">{{ pourcent|round(2, 'floor') }}%</div>
                                             </div>
                                         {% endif %}
                                     {% endfor %}

@@ -22,6 +22,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     fields={"user","name"},
  *     message="Vous avez deja un poll portant ce nom"
  * )
+ * @UniqueEntity("name")
  * @UniqueEntity("passToken")
  */
 class Poll
@@ -55,8 +56,8 @@ class Poll
     private $questions;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="polls")
-     */
+ * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="polls")
+ */
     private $user;
 
     public function __construct($user){

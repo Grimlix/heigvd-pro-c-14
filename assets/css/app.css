@@ -297,6 +297,10 @@ MENU DEROULANT
     background-color: #FFE8C0;
 }
 
+.btn-orange.disabled, .btn-outline-orange.disabled {
+    background-color: #f8f9fa;
+}
+
 .btn-orange-filled{
     background-color: #f9af19!important;
     color: #FFFFFF!important;
@@ -427,4 +431,109 @@ input[type="radio"]:checked+label {
     height: 100%;
     overflow: auto;
     z-index: 0;
+}
+
+/*.disabled, *:disabled{
+    cursor: not-allowed!important;
+}*/
+
+.btn.disabled,
+.btn[disabled],
+fieldset[disabled] .btn {
+    cursor: not-allowed;
+}
+
+.waitnext{
+    z-index:1000;
+    background-color: #FFFFFFBB;
+    border:1px solid #f9af1966;
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+@media(max-width: 768px)  {
+    .waitnext{
+        width: 95%;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+}
+
+.min-h-25{
+    min-height: 25%;
+}
+
+.min-w-50{
+    min-width: 50%;
+}
+
+#infopage p{
+    color:#212529;
+}
+
+#infopage h1, #infopage h2,#infopage h3,#infopage h4,#infopage h5, #infopage h6, #infopage h7{
+    color:#f9af19;
+}
+
+
+.nav-link{
+    color: black;
+    padding: 0.5rem 0rem!important;
+}
+
+.nav-link:hover {
+    color: black;
+    background-color: #F2C168;
+    text-decoration: none !important;
+}
+
+.nav-link.active{
+    /*background-color: #f9af19;*/
+    /*border-bottom: 1px solid #f9af19;*/
+    color: #f9af19;
+}
+
+.dropdown-menu.collapsing {
+    display:block;
+}
+
+.dropdown-menu{
+    float: initial!important;
+    border:0px!important;
+    border-left: 1px solid #f9af19!important;
+    border-radius: 0px!important;
+    outline-offset: 10px;
+    outline-color: #0000cc;
+}
+
+#navbar-example{
+    display: block!important;
+    position: fixed;
+    margin-left: -15px;
+    width: 100%;
+    background: #ffffff;
+    overflow: auto;
+    height: 100vh;
+    top: 0;
+    max-width: 283px;
+}
+
+/* width */
+#navbar-example::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+#navbar-example::-webkit-scrollbar-track {
+    background: #f8f9fa;
+}
+
+/* Handle */
+#navbar-example::-webkit-scrollbar-thumb {
+    background: #f2dec2;
+}
+
+/* Handle on hover */
+#navbar-example::-webkit-scrollbar-thumb:hover {
+    background: #f9af19;
 }

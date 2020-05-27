@@ -135,6 +135,11 @@ class Poll_service
         }
     }
 
+    public function get_poll_user($poll_token){
+        $poll = $this->getPoll($poll_token);
+        return $poll->getUser();
+    }
+
     public function set_last_question($poll_token)
     {
         $next_question =

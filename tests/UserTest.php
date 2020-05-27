@@ -19,13 +19,13 @@ class UserTest extends WebTestCase
         $user = new User();
         $poll = new Poll($user);
 
-        $question1 = new Question();
+        $question1 = new Question($user);
         $question1->setPoll($poll);
         $question1->setText("Question1");
 
 
         $poll2 = new Poll($user);
-        $question2 = new Question();
+        $question2 = new Question($user);
         $question2->setPoll($poll2);
 
         $poll->addQuestion($question1);
@@ -48,7 +48,11 @@ class UserTest extends WebTestCase
         $this->assertEmpty($user->getPolls());
     }
 
-
+    public function testGetAndSetPlainPassword(){
+        $user = new User();
+        $user->setPlainPassword("hello");
+        $this->assertEquals("hello", $user->getPlainPassword());
+    }
 
 
 
