@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{%  block body %}
+
+    <div class="row flex-grow-1">
+        <div class="container bg-orange-light shadow question-content">
+            <div class="row my-3">
+                <div class="col text-center">
+                    <h1>{{ questions[0].poll.name }}</h1>
+                </div>
+            </div>
+            <div class="row my-3">
+                {% set i = 0 %}
+                {% for question in questions %}
+                    {% set i = i+1 %}
+                    {# Setting up variables --> I know this is ugly but no time... #}
+                    {% set totalAns = 0 %}
+                    {% for answer in answers %}
+                        {% for ans in answer %}
+                            {% if ans.question.id == question.id %}
+                                {% for statistic in statistics %}
+                                    {% for stat in statistic %}
+                                        {% if ans.id == stat.answer_id %}
+                                            {% set totalAns = totalAns + stat.count %}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+
+                <div class="col-lg-6 mb-3">
+                    <div class="bg-light h-100">
+                        <div class="row p-2 h-100 orange-text">
+                            <div class="col-12 align-self-start text-center">
+                                <h5>Question n°{{ i }}</h5>
+                                <hr class="mx-2">
+                            </div>
+                            <div class="col-12 align-self-center">
+                                {{ question.text | nl2br}}
+                            </div>
+                            <div class="col-12 align-self-end">
+                                <hr class="mx-2">
+                                {% for answer in answers %}
+                                    {% for ans in answer %}
+                                        {% if ans.question.id == question.id %}
+                                            <div class="row">
+                                                <div class="col">{{ ans.answerText | nl2br }}</div>
+                                                {% set nbAns = 0 %}
+                                                {% for statistic in statistics %}
+                                                    {% for stat in statistic %}
+                                                        {% if ans.id == stat.answer_id %}
+                                                            {% set nbAns =  stat.count  %}
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                {% endfor %}
+                                                <div class="col-auto text-right small">[{{ nbAns }} / {{ totalAns }}]</div>
+                                            </div>
+                                            {% set pourcent = 0 %}
+                                            {% if  totalAns > 0 %}
+                                                {% set pourcent = 100*nbAns/totalAns %}
+                                            {% endif %}
+                                            <div class="progress mb-4">
+                                                <div class="progress-bar bg-orange" style="width: {{ pourcent }}%" role="progressbar">{{ pourcent|round(2, 'floor') }}%</div>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <hr />
+            <div class="row mb-5">
+                <div class="col">
+                    <a class="btn btn-outline-orange" href="{{ url('easyadmin') }}"><span class="material-icons">reply</span> back to admin page</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+    <div class="row">
+        <div id="col" class="col">
+            <div class="jumbotron bg-light centered shadow-lg text-center">
+                <div class="smiley-reponce">
+                    <img src="{{asset('image/smileyREPONCE.png')}}" alt="PointRéponse" style="width: 85px; height: auto;">
+                </div>
+                <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
+                {% if targetUrl %}
+                    <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
+                {% endif %}
+               <div class="row">
+                   <div class="col text-left"><a class="btn btn-orange orange-text orange-border w-100 my-1" href="{{ path('fos_user_profile_show') }}"><span class="material-icons">person_outline</span> My account</a></div>
+                   <div class="col"><a class="btn btn-orange orange-text orange-border w-100 my-1" href="{{ path('easyadmin') }}"><span class="material-icons"><span class="material-icons">security</span></span> Create a poll</a></div>
+               </div>
+            </div>
+        </div>
+    </div>
+{% endblock fos_user_content %}

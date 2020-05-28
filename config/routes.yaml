@@ -1,30 +1,39 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+app_user_index:
+    path: /
+    controller: App\Controller\Admin_controller::home
 
-app_demo_getTemplate:
-    path: /demo/getTemplate
-    controller: App\Controller\Demo_controller::get_template
-app_demo_getHttpResponse:
-    path: /demo/getHttpResponse
-    controller: App\Controller\Demo_controller::get_http_response
-app_demo_getRandomNumber:
-    path: /demo/getRandomNumber
-    controller: App\Controller\Demo_controller::get_random_number
-    
+app_user_poll:
+  path: /poll
+  controller: App\Controller\Poll_controller::validateToken
 
 app_admin_index:
-    path: /admin
-    controller: App\Controller\Admin_controller::index
+  path: /home
+  controller: App\Controller\Admin_controller::home
 
-app_admin_createPoll:
-    path: /admin/createPoll
-    controller: App\Controller\Admin_controller::create_poll
+app_admin_setNextQuestion:
+    path: /home/setNextQuestion/{poll_token}
+    controller: App\Controller\Admin_controller::set_next_question
+
+app_admin_setLastQuestion:
+    path: /home/setLastQuestion/{poll_token}
+    controller: App\Controller\Admin_controller::set_last_question
+
+app_admin_runPoll:
+  path: /runPoll/{poll_token}
+  controller: App\Controller\Admin_controller::run_poll
+
+app_user_getPoll:
+    path: /getPoll/{poll_token}
+    controller: App\Controller\User_controller::get_poll
+
+app_user_incrementPollStatistic:
+    path: /incrementPollStatistic/{poll_token}
+    controller: App\Controller\User_controller::increment_poll_statistic
+
+app_infoPage:
+  path: /info
+  controller: App\Controller\Info_controller::index
 
 
-    
-app_user_getCurrentPoll:
-    path: /user/getCurrentPoll
-    controller: App\Controller\User_controller::get_current_poll
-
-
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

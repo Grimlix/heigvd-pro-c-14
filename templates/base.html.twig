@@ -1,12 +1,117 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>{% block title %}PointRéponse{% endblock %}</title>
+        <link rel="icon" type="image/png" href="{{ asset('image/favicon/favicon-16.png') }}" sizes="16x16" />
+        <link rel="icon" type="image/png" href="{{ asset('image/favicon/favicon-32.png') }}" sizes="32x32" />
+        <link rel="icon" type="image/png" href="{{ asset('image/favicon/favicon-96.png') }}" sizes="96x96" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        {% block stylesheets %}
+            {# 'app' must match the first argument to addEntry() in webpack.config.js #}
+            {{ encore_entry_link_tags('app') }}
+
+            <!-- Renders a link tag (if your module requires any CSS)
+                 <link rel="stylesheet" href="/build/app.css"> -->
+            <!-- yarn run encore dev --watch -->
+        {% endblock %}
+
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+            <!-- Renders app.js & a webpack runtime.js file
+                <script src="/build/runtime.js"></script>
+                <script src="/build/app.js"></script> -->
+        {% endblock %}
+
+
     </head>
+
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+
+    {% block modal %} {% endblock %}
+
+    <div class="d-flex" id="wrapper">
+
+        <!-- Sidebar -->
+        <div class="bg-light border-right orange-text" id="sidebar-wrapper">
+            <div class="sidebar-heading text-center">Menu <button type="button" class="close menu-toggle" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="list-group list-group-flush text-uppercase orange-text">
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <a class="border-0 list-group-item list-group-item-action bg-light" href="{{ path('fos_user_profile_show') }}"><span class="material-icons">person_outline</span> Mon compte</a>
+                    <a class="border-0 list-group-item list-group-item-action bg-light" href="{{ path('easyadmin') }}"><span class="material-icons">security</span> Espace Admin</a>
+                    <a class="border-0 list-group-item list-group-item-action bg-light" href="{{ path('fos_user_security_logout') }}"><span class="material-icons">clear</span> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
+                {% else %}
+                    <a class="border-0 list-group-item list-group-item-action bg-light" href="{{ url('fos_user_security_login') }}"><span class="material-icons">person_outline</span> se connecter</a>
+                    <a class="border-0 list-group-item list-group-item-action bg-light" href="{{ url('fos_user_registration_register') }}"><span class="material-icons">person_add</span> créer un compte</a>
+                {% endif %}
+                <div class="dropdown-divider"></div>
+                <a href="{{ url('app_user_index') }}" class="border-0 list-group-item list-group-item-action bg-light"><span class="material-icons">home</span> home</a>
+                <a href="{{ url('app_infoPage')}}" class="border-0 list-group-item list-group-item-action bg-light"><span class="material-icons">info</span> à propos</a>
+            </div>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row min-vh-100">
+                    <div class="col">
+                        <div class="d-flex flex-column h-100">
+                            <div class="row">
+                                <nav id="bottom" class="navbar navbar-expand-lg navbar-light bg-light justify-content-between shadow-sm w-100">
+                                    <button class="menu-toggle btn btn-orange"><span class="material-icons orange-text text-medium">menu</span></button>
+
+                                    <a class="btn btn-orange" href="{{ url('app_user_index') }}"><img src="{{asset('image/BoutonPR.png')}}" alt="PointRéponse" style="width:auto; height:3em;margin-top:-17px;"></a>
+                                    <div class="dropdown">
+                                        <button type="button" class="btn btn-orange" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                                <span class="orange-text d-none d-sm-inline" style="top: -8px;position: relative;line-height: 0;vertical-align: baseline;">
+																	{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
+															</span>
+                                            {% endif %}
+                                            <span class="material-icons text-medium orange-text">
+															person_outline
+													</span>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
+                                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                                <a class="dropdown-item" href="{{ path('fos_user_profile_show') }}">Mon compte</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" type="button" href="{{ path('fos_user_security_logout') }}">
+                                                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                                                </a>
+                                            {% else %}
+                                                <a class="dropdown-item" type="button" href="{{ url('fos_user_security_login') }}">se connecter</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" type="button" href="{{ url('fos_user_registration_register') }}">créer un compte</a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </nav>
+                            </div>
+                            <!-- page content -->
+                            {%  block body %}
+
+                            {% endblock %}
+
+                        </div>
+                    </div>
+                </div>
+                <!-- /#page-content-wrapper -->
+            </div>
+        </div>
+    </div>
+    <!-- /#wrapper -->
+
     </body>
+
+
 </html>
+
+
+

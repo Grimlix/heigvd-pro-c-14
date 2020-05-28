@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div id="col" class="col">
+            <div class="jumbotron bg-light centered shadow-lg text-center w-100 rounded-0">
+                <div class="smiley-reponce">
+                    <img src="{{asset('image/smileyREPONCE.png')}}" alt="PointRéponse" style="width: 85px; height: auto;">
+                </div>
+                <h1 style="font-weight: bolder; line-height: 120px; font-size: 160px;">403</h1>
+                <h2 class="h1 orange-text text-uppercase">Forbidden</h2>
+                <p>
+                    You are not alloweed here...
+                </p>
+                <p><a class="btn btn-orange-filled rounded-pill text-uppercase px-5" href="{{ url('app_user_index') }}"><span class="material-icons">home</span> return to the homepage</a></p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
