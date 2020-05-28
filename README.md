@@ -15,6 +15,7 @@ Development team:
 | Lucas Gianinetti                     | lucas.gianinetti@heig-vd.ch   | LucasGianinetti |
 | Ludovic Bonzon       | ludovic.bonzon@heig-vd.ch | bonzonlu |
 | Linus Torvalds (deputy project lead) | linus.torvalds@heig-vd.ch    | kwenaw   |
+| Edouard de Chambrier (GUI) | edechambrier@heig-vd.ch    | edechambrier   |
 |
 
 ## Dependencies
