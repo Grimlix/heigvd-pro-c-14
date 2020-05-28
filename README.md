@@ -1,55 +1,47 @@
-# Collaborative annotation of historical images
+© PointRéponse 2020
 
-An application for collaboratively tagging and annotating historical
-images from the canton of Vaud.
+A web application which makes real-time polls.
 
 This software was developed as semester project (PRO) at HEIG-VD,
-academic year 2019/20.
+academic year 2019/2020.
 
 Development team:
 
 | Name                                 | Email                        | Github   |
 |--------------------------------------|------------------------------|----------|
-| Nicolas Hungerbühler                 | nicolas.hungerbuhler@heig-vd.ch     | Grimlix  |
-| Jérémy Corbaz (project lead)       | jeremy.corbaz@heig-vd.ch   | emerzit   |
-| Lucas Gianinetti                     | lucas.gianinetti@heig-vd.ch   | LucasGianinetti |
-| Ludovic Bonzon       | ludovic.bonzon@heig-vd.ch | bonzonlu |
-| Linus Torvalds (deputy project lead) | linus.torvalds@heig-vd.ch    | kwenaw   |
-| Edouard de Chambrier (GUI) | edechambrier@heig-vd.ch    | edechambrier   |
-|
+| Nicolas Hungerbühler (dev)               | nicolas.hungerbuhler@heig-vd.ch     | Grimlix  |
+| Jérémy Corbaz (project lead, integrator)       | jeremy.corbaz@heig-vd.ch   | emerzit   |
+| Lucas Gianinetti (dev) | lucas.gianinetti@heig-vd.ch   | LucasGianinetti |
+| Ludovic Bonzon (dev) | ludovic.bonzon@heig-vd.ch | bonzonlu |
+| Laurent Tailhades (designer, QA, project lead deputy)| laurer6@gmail.com  | ggeggc   |
+| Edouard de Chambrier (UI lead) | edechambrier@heig-vd.ch    | edechambrier   |
+| Simon Flückiger (Architect, integrator) | simon.fluckiger@heig-vd.ch | saumonlecitron |
 
 ## Dependencies
 
-This software requires Java 8 or above and the following libraries:
+This software has been tested with following dependencies:
 
-* Lorem v. 4.3
-* Ipsum v. 48.3.p1
-* Dolor v. 22-3
+* PHP 7.3.12
+* MySql 8.0.18
+* Apache 2.4.41
+* Mercure 0.9.0 (https://github.com/dunglas/mercure)
+* Symfony 4.4
 
 ## Build and install
 
-1. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-   nisi ut aliquip ex ea commodo consequat.
+1. Install Web services (i.e. php,mysql and apache). Can be achieved simply with Wamp
 
-2. Duis aute irure dolor in reprehenderit in voluptate velit esse
-   cillum dolore eu fugiat nulla pariatur.
+2. Set-up Symfony project (https://symfony.com/doc/4.4/setup.html#setting-up-an-existing-symfony-project)
 
-3. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-   officia deserunt mollit anim id est laborum.
+3. Get Mercure (https://github.com/dunglas/mercure) and run it with following command  
+   ./mercure --jwt-key='pro' --addr='localhost:3000' --allow-anonymous --cors-allowed-origins='*'
+   
+4. Set public folder of the symfony project as root URL of your website
 
 ## Run
 
-1. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-   nisi ut aliquip ex ea commodo consequat.
-
-2. Duis aute irure dolor in reprehenderit in voluptate velit esse
-   cillum dolore eu fugiat nulla pariatur.
-
-3. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-   officia deserunt mollit anim id est laborum.
+1. Go to root folder of website you exposed it through http and a browser  
 
 ## Documentation
 
-User manual: see file xxxxx.
-
-API documentation: see file yyyyy.
+User manual: yourwebsiteURL/info
