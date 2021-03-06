@@ -5,16 +5,6 @@ A web application which makes real-time polls.
 This software was developed as semester project (PRO) at HEIG-VD,
 academic year 2019/2020.
 
-Development team:
-
-| Name                                 | Email                        | Github   |
-|--------------------------------------|------------------------------|----------|
-| Nicolas Hungerbühler (dev)               | nicolas.hungerbuhler@heig-vd.ch     | Grimlix  |
-| Jérémy Corbaz (project lead, integrator)       | jeremy.corbaz@heig-vd.ch   | emerzit   |
-| Lucas Gianinetti (dev) | lucas.gianinetti@heig-vd.ch   | LucasGianinetti |
-| Ludovic Bonzon (dev) | ludovic.bonzon@heig-vd.ch | bonzonlu |
-| Edouard de Chambrier (UI lead) | edechambrier@heig-vd.ch    | edechambrier   |
-| Simon Flückiger (Architect, integrator) | simon.fluckiger@heig-vd.ch | saumonlecitron |
 
 ## Dependencies
 
