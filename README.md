@@ -13,7 +13,6 @@ Development team:
 | Jérémy Corbaz (project lead, integrator)       | jeremy.corbaz@heig-vd.ch   | emerzit   |
 | Lucas Gianinetti (dev) | lucas.gianinetti@heig-vd.ch   | LucasGianinetti |
 | Ludovic Bonzon (dev) | ludovic.bonzon@heig-vd.ch | bonzonlu |
-| Laurent Tailhades (designer, QA, project lead deputy)| laurer6@gmail.com  | ggeggc   |
 | Edouard de Chambrier (UI lead) | edechambrier@heig-vd.ch    | edechambrier   |
 | Simon Flückiger (Architect, integrator) | simon.fluckiger@heig-vd.ch | saumonlecitron |
 
