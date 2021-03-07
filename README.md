@@ -5,7 +5,6 @@ A web application which makes real-time polls.
 This software was developed as semester project (PRO) at HEIG-VD,
 academic year 2019/2020.
 
-Development team:
 
 ## Dependencies
 
